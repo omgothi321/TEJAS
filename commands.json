@@ -1,0 +1,27 @@
+{
+  "open firefox": "firefox &",
+  "close firefox": "pkill firefox",
+
+  "open terminal": "gnome-terminal &",
+  "close terminal": "pkill gnome-terminal",
+
+  "shutdown system": "shutdown now",
+  "restart system": "reboot",
+
+  "list files": "ls",
+  "show files": "ls",
+  "list all files": "ls -la",
+
+  "current directory": "pwd",
+
+  "open folder": "xdg-open .",
+  "open downloads": "xdg-open ~/Downloads",
+
+  "system status": "top -b -n 1 | head -20",
+
+  "check internet": "ping -c 1 google.com",
+
+  "disk usage": "df -h",
+
+  "memory usage": "free -h"
+}

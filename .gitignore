@@ -1,0 +1,10 @@
+node_modules/
+.tejas/
+*.log
+.env
+*.bak
+src_backup_*/
+teletest/
+test_*.js
+*.save
+telegram_bot.log
