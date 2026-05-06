@@ -26,6 +26,14 @@
 
 ---
 
+## 💎 Performance Showcase
+Want to see Tejas in action? Check out our [showcase](./showcase) directory:
+- **Routing Demo:** 34/34 tasks routed with 100% accuracy.
+- **Agent Performance:** Stress-testing Code, File, and Web agents.
+- **Brain Speed:** Benchmarking Groq Llama 3.3 70B response times.
+
+---
+
 ## 🚀 Quick Start
 ```bash
 git clone https://github.com/omgothi321/tejas.git
