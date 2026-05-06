@@ -1,0 +1,10 @@
+services:
+  tejas:
+    build: .
+    volumes:
+      - .:/app
+      - ~/.tejas:/root/.tejas
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: node src/integrations/telegram.js
