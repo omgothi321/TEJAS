@@ -19,7 +19,7 @@ class Sanitizer {
     // Check for common injection patterns
     if (forbidden.some(char => command.includes(char)) || (command.includes('$(') && !command.includes('$(('))) {
       // If it has a pipe or redirect, it MUST be a known safe tool like grep or sort
-      const safePipes = ['| grep', '| sort', '| head', '| tail', '| uniq', '| awk', '| xargs du', '| xargs rm'];
+      const safePipes = ['| grep', '| sort', '| head', '| tail', '| uniq', '| awk'];
       const hasPipe = command.includes('|');
       
       if (hasPipe) {
