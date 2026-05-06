@@ -1,6 +1,6 @@
 'use strict';
 
-const { exec, execSync } = require('child_process');
+const { exec, execSync, execFile } = require('child_process');
 const { promisify }       = require('util');
 const fs                  = require('fs-extra');
 const path                = require('path');
@@ -8,6 +8,7 @@ const chalk               = require('chalk');
 const Sanitizer           = require('../utils/sanitizer');
 
 const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 // ─── EXECUTOR ─────────────────────────────────────────────────────────────────
 class Executor {
@@ -17,21 +18,17 @@ class Executor {
     this.timeout = options.timeout || 30000;
   }
 
-  // ── RUN STEPS ─────────────────────────────────────────────────────────────
   async runSteps(steps = [], onStepDone = null) {
     const results = [];
-
     for (const step of steps) {
       const result = await this.runStep(step);
       results.push(result);
       if (onStepDone) onStepDone(step, result);
       if (result.error && !step.continue_on_error) break;
     }
-
     return results;
   }
 
-  // ── RUN SINGLE STEP ───────────────────────────────────────────────────────
   async runStep(step) {
     const result = {
       step:    step.step,
@@ -59,16 +56,11 @@ class Executor {
           result.output = step.description;
           break;
         case 'api_call':
-          // Security: Block potentially dangerous shell redirection
-          const safeUrl = (step.url || '').replace(/['"`]/g, '');
-          if (safeUrl) {
-            try {
-              result.output = await this._runShell('curl -s --max-time 10 "' + safeUrl + '"');
-            } catch {
-              result.output = '[API call failed — try using shell action with curl instead]';
-            }
+          // Hardened API call using curl with args array
+          if (step.url) {
+            result.output = await this._runShellArray('curl', ['-s', '--max-time', '10', step.url]);
           } else {
-            result.output = '[No URL provided for api_call — use shell action with curl]';
+            result.output = '[No URL provided for api_call]';
           }
           break;
         case 'ask_user':
@@ -87,36 +79,47 @@ class Executor {
     return result;
   }
 
-  // ── SHELL COMMAND ─────────────────────────────────────────────────────────
+  /**
+   * Executes a command using an argument array for maximum security.
+   * Prevents shell injection by bypassing the shell entirely.
+   */
+  async _runShellArray(cmd, args) {
+    if (this.verbose) {
+      console.log(chalk.gray(`    $ ${cmd} ${args.join(' ')}`));
+    }
+    const { stdout, stderr } = await execFileAsync(cmd, args, {
+      cwd:     this.cwd,
+      timeout: this.timeout,
+      env:     { ...process.env }
+    });
+    return (stdout || stderr || '').trim();
+  }
+
   async _runShell(command) {
     if (!command) throw new Error('No command provided');
 
-    // ⚠ BRUTAL SAFETY CHECK — use the new Sanitizer
+    // Sanitization remains as a secondary defense layer
     const safeCommand = Sanitizer.sanitizeShell(command);
     
-    // Fallback safety check for destructive strings
     if (!this.isSafeCommand(safeCommand)) {
-      throw new Error(`Blocked dangerous command: "${safeCommand}". Tejas will not run this.`);
+      throw new Error(`Blocked dangerous command pattern. Tejas will not run this.`);
     }
 
     if (this.verbose) {
       console.log(chalk.gray(`    $ ${safeCommand}`));
     }
 
+    // Still using exec for arbitrary shell strings (like arithmetic expansions)
+    // but the sanitizer now blocks injection operators.
     const { stdout, stderr } = await execAsync(safeCommand, {
       cwd:     this.cwd,
       timeout: this.timeout,
       env:     { ...process.env }
     });
 
-    if (stderr && !stdout) {
-      return stderr.trim();
-    }
-
-    return stdout.trim();
+    return (stdout || stderr || '').trim();
   }
 
-  // ── FILE READ ─────────────────────────────────────────────────────────────
   async _readFile(filePath) {
     if (!filePath) throw new Error('No file path provided');
     const fullPath = Sanitizer.sanitizePath(filePath, this.cwd);
@@ -124,7 +127,6 @@ class Executor {
     return fs.readFile(fullPath, 'utf8');
   }
 
-  // ── FILE WRITE ────────────────────────────────────────────────────────────
   async _writeFile(filePath, content) {
     if (!filePath) throw new Error('No file path provided');
     const fullPath = Sanitizer.sanitizePath(filePath, this.cwd);
@@ -133,7 +135,6 @@ class Executor {
     return `Written: ${fullPath}`;
   }
 
-  // ── SAFE SHELL (READ-ONLY CHECK) ──────────────────────────────────────────
   isSafeCommand(command) {
     const dangerous = [
       'rm -rf /', 'mkfs', 'dd if=', ':(){:|:&};:',
@@ -143,7 +144,6 @@ class Executor {
     return !dangerous.some(d => command.includes(d));
   }
 
-  // ── DETECT SYSTEM INFO ────────────────────────────────────────────────────
   async detectEnvironment() {
     const info = {
       os:      process.platform,
@@ -154,23 +154,22 @@ class Executor {
     };
 
     const toolChecks = [
-      { tool: 'git',     cmd: 'git --version' },
-      { tool: 'node',    cmd: 'node --version' },
-      { tool: 'npm',     cmd: 'npm --version' },
-      { tool: 'python3', cmd: 'python3 --version' },
-      { tool: 'docker',  cmd: 'docker --version' },
-      { tool: 'curl',    cmd: 'curl --version' },
-      { tool: 'wget',    cmd: 'wget --version' },
-      { tool: 'jq',      cmd: 'jq --version' }
+      { tool: 'git',     cmd: 'git' },
+      { tool: 'node',    cmd: 'node' },
+      { tool: 'npm',     cmd: 'npm' },
+      { tool: 'python3', cmd: 'python3' },
+      { tool: 'docker',  cmd: 'docker' },
+      { tool: 'curl',    cmd: 'curl' },
+      { tool: 'wget',    cmd: 'wget' },
+      { tool: 'jq',      cmd: 'jq' }
     ];
 
     for (const { tool, cmd } of toolChecks) {
       try {
-        execSync(cmd, { stdio: 'pipe' });
+        // Safe tool check using execFile
+        await execFileAsync(cmd, ['--version'], { stdio: 'pipe' });
         info.tools.push(tool);
-      } catch (err) {
-        if (this.verbose) console.warn(`[Executor] Tool ${tool} not found:`, err.message);
-      }
+      } catch {}
     }
 
     return info;

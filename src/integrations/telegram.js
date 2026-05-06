@@ -1,8 +1,11 @@
-require('dotenv').config({ path: '/home/kali/tejas/.env' });
+const path = require('path');
+// Use relative path for .env based on project root
+const projectRoot = path.join(__dirname, '../..');
+require('dotenv').config({ path: path.join(projectRoot, '.env') });
+
 const TelegramBot = require('node-telegram-bot-api');
 const { execFile } = require('child_process');
 const fs = require('fs');
-const path = require('path');
 
 // 🔐 Token from .env
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -15,7 +18,7 @@ if (!token) {
 // 👤 Authorized IDs
 const AUTHORIZED_IDS = [1708700004, 8795252346, 8684802748];
 
-console.log("🚀 Tejas Telegram Control: SOLID VERSION STARTING...");
+console.log("🚀 Tejas Telegram Control: HARDENED VERSION STARTING...");
 
 const bot = new TelegramBot(token, {
   polling: {
@@ -25,12 +28,7 @@ const bot = new TelegramBot(token, {
   }
 });
 
-// Command Map for fixed actions
-const commandMap = {
-  '/status': '/home/kali/tejas/bin/tejas.js status',
-  '/files': 'ls -p',
-  '/memory': 'cat /home/kali/.tejas/memory.json'
-};
+const tejasBin = path.join(projectRoot, 'bin/tejas.js');
 
 // Handle polling errors gracefully
 bot.on('polling_error', (error) => {
@@ -41,17 +39,22 @@ bot.on('error', (error) => {
   console.error(`❌ [General Error] ${error.message}`);
 });
 
-function runClean(cmd, chatId) {
-  console.log(`🛠️ Executing: ${cmd}`);
+/**
+ * Hardened execution: No shell interpolation.
+ * Uses execFile with argument arrays.
+ */
+function runHardened(args, chatId) {
+  const cmdDisplay = args.join(' ');
+  console.log(`🛠️ Executing (Safe): ${cmdDisplay}`);
   bot.sendChatAction(chatId, 'typing');
 
   const options = {
-    cwd: '/home/kali/tejas',
+    cwd: projectRoot,
     timeout: 60000
   };
 
-  // Using sh -c via execFile for the command map strings
-  execFile('sh', ['-c', cmd], options, (error, stdout, stderr) => {
+  // Direct execution of the node binary with our script
+  execFile('node', [tejasBin, ...args], options, (error, stdout, stderr) => {
     let output = (stdout || "").trim();
     let errorOutput = (stderr || "").trim();
 
@@ -79,25 +82,36 @@ bot.on("message", (msg) => {
     return;
   }
 
-  const lower = text.trim().toLowerCase();
+  const input = text.trim();
+  const lower = input.toLowerCase();
 
-  // 1. Check Command Map
-  if (commandMap[lower]) {
-    runClean(commandMap[lower], chatId);
-    return;
-  }
-
-  // 2. Handle /start
+  // 1. Handle /start
   if (lower === '/start') {
-    bot.sendMessage(chatId, "👋 Tejas Solid Online.\n\n/status - System status\n/files - List files\n/memory - Memory graph\n/speak [text] - Voice output\n/run [task] - Execute task");
+    bot.sendMessage(chatId, "👋 Tejas Hardened Online.\n\n/status - System status\n/files - List files\n/memory - Memory graph\n/speak [text] - Voice output\n/run [task] - Execute task");
     return;
   }
 
-  // 3. Handle specific commands with args
+  // 2. Fixed Command Map (Converted to args)
+  if (lower === '/status') {
+    runHardened(['status'], chatId);
+    return;
+  }
+  if (lower === '/files') {
+    // For general shell commands like 'ls', we route through 'tejas run' 
+    // to benefit from the executor's internal sanitization and context.
+    runHardened(['run', 'list all files in the current directory'], chatId);
+    return;
+  }
+  if (lower === '/memory') {
+    runHardened(['memory', '--show'], chatId);
+    return;
+  }
+
+  // 3. Handle /speak
   if (lower.startsWith('/speak ')) {
-    const speech = text.slice(7).trim();
+    const speech = input.slice(7).trim();
     if (speech) {
-      runClean(`/home/kali/tejas/bin/tejas.js voice --speak "${speech}"`, chatId);
+      runHardened(['voice', '--speak', speech], chatId);
     } else {
       bot.sendMessage(chatId, "❌ Please provide text to speak.");
     }
@@ -105,9 +119,9 @@ bot.on("message", (msg) => {
   }
 
   // 4. Handle /run and Natural Language
-  let task = text;
+  let task = input;
   if (lower.startsWith('/run ')) {
-    task = text.slice(5).trim();
+    task = input.slice(5).trim();
   }
 
   if (!task) {
@@ -115,6 +129,6 @@ bot.on("message", (msg) => {
     return;
   }
 
-  // Execute directly without "echo y" - Note: Requires non-interactive mode or --yes in CLI
-  runClean(`/home/kali/tejas/bin/tejas.js run "${task}"`, chatId);
+  // Execute using the argument array to prevent shell injection
+  runHardened(['run', task], chatId);
 });
