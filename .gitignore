@@ -1,10 +1,32 @@
+# Dependency directories
 node_modules/
+jspm_packages/
+
+# Tejas Private Data
 .tejas/
-*.log
 .env
-*.bak
+memory.json
+graph.json
+
+# Logs
+logs/
+*.log
+telegram_bot.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing & Backups
 src_backup_*/
 teletest/
 test_*.js
+*.bak
 *.save
-telegram_bot.log
+*.swp
+.DS_Store
+
+# Misc
+dist/
+build/
+.cache/
+EOF
