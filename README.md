@@ -1,55 +1,85 @@
 # ⚡ TEJAS — AI + Robotics Operating System
-
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Stability: Stable](https://img.shields.io/badge/stability-stable-blue.svg)]()
+[![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-blue.svg)]()
 
-> **Personal AI OS built by Om — Mumbai, India.**  
-> Local-first. Voice-controlled. Free forever.
-
----
-
-## ⚡ What It Does
-- **Controls PC** by voice and Telegram.
-- **Learns habits** daily to automate your life.
-- **Routes 34+ task types** to specialized AI agents.
-- **Your data** stays on your machine only (Privacy First).
+Tejas is a high-performance, model-agnostic AI agent framework designed for local system automation, robotics control, and remote management. It provides a bridge between Large Language Models (LLMs) and your local operating system.
 
 ---
 
-## 🧠 Key Features
-- **Multi-Model Brain:** Intelligent routing between **Groq (Llama 3.3 70B)** and **Gemini 2.0**.
-- **Specialized Agents:** Dedicated handlers for **Code, Files, Web research, and Workflows**.
-- **Remote Control:** Full system access via a secure **Telegram Bot**.
-- **Voice Interface:** Built-in **Piper TTS** and **Whisper STT** for natural interaction.
-- **Memory Graph:** Compounds intelligence by learning from every task you run.
+## 🚀 Key Features
+
+- **🧠 Multi-Model Brain**: Seamlessly switch between Groq (Llama 3), Claude, Gemini, xAI, and local models via Ollama.
+- **📱 Remote Control**: Secure Telegram integration for controlling your system from anywhere.
+- **🎙️ Voice Interface**: Built-in TTS (Piper) and voice command support.
+- **📂 Smart File Agent**: Context-aware file operations with built-in security sanitization.
+- **🛡️ Security First**: Hardened command execution (`execFile`), input validation, and secure credential management.
+- **📊 Knowledge Graph**: Persistent memory layer that learns your workflows over time.
 
 ---
 
-## 💎 Performance Showcase
-Want to see Tejas in action? Check out our [showcase](./showcase) directory:
-- **Routing Demo:** 34/34 tasks routed with 100% accuracy.
-- **Agent Performance:** Stress-testing Code, File, and Web agents.
-- **Brain Speed:** Benchmarking Groq Llama 3.3 70B response times.
+## 🛠️ Architecture
+
+Tejas follows a modular architecture:
+- **Core**: Intent classification (`intent.js`), task execution (`executor.js`), and AI orchestration (`ai.js`).
+- **Memory**: A JSON-based knowledge graph that stores user preferences, project context, and learned patterns.
+- **Agents**: Specialized sub-systems for Web Search, File Operations, and Code Execution.
+- **Integrations**: Telegram Bot and Dashboard for interaction.
 
 ---
 
-## 🚀 Quick Start
+## 📦 Installation
+
+### Prerequisites
+- Node.js >= 18.0.0
+- Linux (Debian/Ubuntu/Kali recommended)
+- API Keys for your preferred models (Groq, Gemini, etc.)
+
+### Quick Start
 ```bash
-git clone https://github.com/omgothi321/tejas.git
-cd tejas
-npm install
-tejas init
-tejas run "who are you"
+git clone https://github.com/omgothi321/TEJAS.git
+cd TEJAS
+bash install.sh
 ```
 
+### Setup Credentials
+1. `cp .env.example .env`
+2. Fill in your API keys and `TELEGRAM_BOT_TOKEN`.
+3. Add your Telegram User ID to `TELEGRAM_AUTHORIZED_IDS`.
+
 ---
 
-## 🤝 Community
-Built with passion by **Om** in Mumbai, India.  
-*One person. Zero budget. Real domination.*
+## 🛡️ Security Policy
+
+Tejas is designed with several security layers:
+- **Command Sanitization**: Prevents destructive shell operators and command injection.
+- **Path Protection**: Blocks path traversal attempts outside the project root.
+- **Credential Safety**: Strictly uses environment variables; no secrets are ever hardcoded or stored in config files.
+- **Hardened Remote**: The Telegram integration uses `execFile` to avoid shell interpolation.
 
 ---
 
-## 📜 License
-MIT © 2026 [Om Gothi](https://github.com/omgothi321)
+## 📖 Usage
+
+### CLI Commands
+- `tejas status` — Check system and agent status.
+- `tejas run "your task"` — Execute a natural language task.
+- `tejas voice --speak "Hello"` — Output text to speech.
+- `tejas memory --show` — View the current knowledge graph.
+
+### Telegram Control
+Message your bot:
+- `/status` — Get system report.
+- `/run [task]` — Execute a task remotely.
+- `/speak [text]` — Trigger local voice output.
+
+---
+
+## ⚖️ License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+Contributions are welcome! Please see the issue tracker for planned features and security audits.
+
+**Built by Om — Mumbai, India**

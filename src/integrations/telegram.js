@@ -15,8 +15,15 @@ if (!token) {
   process.exit(1);
 }
 
-// 👤 Authorized IDs
-const AUTHORIZED_IDS = [1708700004, 8795252346, 8684802748];
+// 👤 Authorized IDs from .env (comma-separated string)
+const AUTHORIZED_IDS = (process.env.TELEGRAM_AUTHORIZED_IDS || "")
+  .split(',')
+  .map(id => parseInt(id.trim()))
+  .filter(id => !isNaN(id));
+
+if (AUTHORIZED_IDS.length === 0) {
+  console.warn("⚠️ WARNING: No TELEGRAM_AUTHORIZED_IDS found in .env. Bot will block all messages.");
+}
 
 console.log("🚀 Tejas Telegram Control: HARDENED VERSION STARTING...");
 
