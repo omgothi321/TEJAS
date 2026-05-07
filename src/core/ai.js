@@ -39,7 +39,7 @@ class AIEngine {
     const apiKey = this.apiKeys.claude || process.env.ANTHROPIC_API_KEY;
     if (!apiKey) throw new Error('No Claude API key. Run: tejas config --set api_keys.claude=YOUR_KEY');
     const body = {
-      model: 'claude-sonnet-4-6',
+      model: 'claude-sonnet-4-5',
       max_tokens: options.max_tokens || 4096,
       messages: [{ role: 'user', content: prompt }]
     };

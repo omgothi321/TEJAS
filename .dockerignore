@@ -3,3 +3,14 @@ node_modules
 .tejas
 *.log
 *.bak
+.git
+.github
+showcase
+docs
+tests
+scripts
+logs
+build_summary.md
+README.md
+LICENSE
+*.md

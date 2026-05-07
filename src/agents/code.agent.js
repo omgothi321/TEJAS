@@ -2,10 +2,9 @@
 
 const fs   = require('fs-extra');
 const path = require('path');
-const { exec, execFile } = require('child_process');
+const { execFile } = require('child_process');
 const { promisify } = require('util');
 const Sanitizer    = require('../utils/sanitizer');
-const execAsync = promisify(exec);
 const execFileAsync = promisify(execFile);
 
 // ─── CODE AGENT ───────────────────────────────────────────────────────────────

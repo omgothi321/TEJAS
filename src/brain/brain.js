@@ -177,7 +177,7 @@ class TejasB {
     try {
       const raw    = await this.ai.call(prompt);
       const result = this.ai._parseJSON(raw);
-      return result || { solved: true, confidence: 100, next_step: null };
+      return result || { solved: false, confidence: 0, next_step: 'retry' };
     } catch (err) {
       if (this.config.verbose) console.warn('[Brain] Reflection failed:', err.message);
       return { solved: false, confidence: 0, next_step: 'retry' };
