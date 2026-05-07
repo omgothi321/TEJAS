@@ -44,7 +44,7 @@ Rules:
 - If command had wrong path → fix the path
 - If command had wrong syntax → fix the syntax  
 - If file not found → create it first or use correct path
-- If permission denied → add sudo or change approach
+- If permission denied → suggest manual fix to user, do not retry with elevated privileges
 - Never suggest rm -rf or destructive alternatives
 `;
 

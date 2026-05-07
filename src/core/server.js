@@ -730,16 +730,21 @@ async function loadTasks() {
   const data = await api('/api/tasks');
   if (!data.tasks || data.tasks.length === 0) return;
   const list = document.getElementById('task-list');
-  list.innerHTML = data.tasks.slice(0, 8).map(t => \`
-    <div class="task-item">
-      <span class="badge \${t.success ? 'success' : 'failed'}">\${t.success ? '✓' : '✗'}</span>
-      <div>
-        <div class="task-text">\${t.task || '—'}</div>
-        <div class="task-meta">\${t.agent || '—'} · \${t.timestamp ? t.timestamp.split('T')[0] : '—'}</div>
+  <script>
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  ...
+    list.innerHTML = data.tasks.slice(0, 8).map(t => \`
+      <div class="task-item">
+        <span class="badge \${t.success ? 'success' : 'failed'}">\${t.success ? '✓' : '✗'}</span>
+        <div>
+          <div class="task-text">\${escHtml(t.task || '—')}</div>
+          <div class="task-meta">\${escHtml(t.agent || '—')} · \${t.timestamp ? t.timestamp.split('T')[0] : '—'}</div>
+        </div>
       </div>
-    </div>
-  \`).join('');
-}
 
 async function loadAgents() {
   const data = await api('/api/agents');

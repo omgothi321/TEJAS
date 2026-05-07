@@ -54,16 +54,29 @@ class Executor {
           result.output = await this._writeFile(step.path, step.content);
           break;
         case 'explain':
-          result.output = step.description;
-          break;
-        case 'api_call':
-          // Hardened API call using curl with args array
-          if (step.url) {
-            result.output = await this._runShellArray('curl', ['-s', '--max-time', '10', step.url]);
-          } else {
-            result.output = '[No URL provided for api_call]';
+          _isAllowedUrl(url) {
+            try {
+              const u = new URL(url);
+              if (!['http:', 'https:'].includes(u.protocol)) return false;
+              const blocked = /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.)/i;
+              return !blocked.test(u.hostname);
+            } catch { return false; }
           }
-          break;
+
+          async execute(step) {
+          ...
+                case 'api_call':
+                  // Hardened API call using curl with args array
+                  if (step.url) {
+                    if (!this._isAllowedUrl(step.url)) {
+                        result.output = `Blocked unsafe URL: ${step.url}`;
+                    } else {
+                        result.output = await this._runShellArray('curl', ['-s', '--max-time', '10', step.url]);
+                    }
+                  } else {
+                    result.output = '[No URL provided for api_call]';
+                  }
+                  break;
         case 'ask_user':
           result.output = '[User input required — handled by caller]';
           result.needs_input = true;

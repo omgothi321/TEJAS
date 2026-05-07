@@ -2,9 +2,11 @@
 
 const fs   = require('fs-extra');
 const path = require('path');
-const { exec } = require('child_process');
+const { exec, execFile } = require('child_process');
 const { promisify } = require('util');
+const Sanitizer    = require('../utils/sanitizer');
 const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 // ─── CODE AGENT ───────────────────────────────────────────────────────────────
 // Tejas's pair programmer.
@@ -295,23 +297,23 @@ Explain as if teaching a junior developer.`;
 
     const ext = path.extname(target).toLowerCase();
     const runners = {
-      '.js':  `node ${filePath}`,
-      '.py':  `python3 ${filePath}`,
-      '.sh':  `bash ${filePath}`,
-      '.ts':  `npx ts-node ${filePath}`,
-      '.rb':  `ruby ${filePath}`,
-      '.go':  `go run ${filePath}`
+      '.js':  ['node',    filePath],
+      '.py':  ['python3', filePath],
+      '.sh':  ['bash',    filePath],
+      '.ts':  ['npx', 'ts-node', filePath],
+      '.rb':  ['ruby',    filePath],
+      '.go':  ['go', 'run', filePath]
     };
 
-    const cmd = runners[ext];
-    if (!cmd) return `Don't know how to run ${ext} files.`;
+    const args = runners[ext];
+    if (!args) return `Don't know how to run ${ext} files.`;
 
     try {
-      const { stdout, stderr } = await execAsync(cmd, {
+      const { stdout, stderr } = await execFileAsync(args[0], args.slice(1), {
         cwd: this.cwd,
         timeout: 15000
       });
-      return `Running: ${cmd}\n\nOutput:\n${stdout || stderr || '(no output)'}`;
+      return `Running: ${args.join(' ')}\n\nOutput:\n${stdout || stderr || '(no output)'}`;
     } catch (err) {
       return `Run failed:\n${err.message}`;
     }
@@ -334,12 +336,9 @@ Provide a complete, actionable response with code examples.`;
   async _loadCode(target) {
     if (!target) return '(no file specified — working from task description)';
 
-    const filePath = path.isAbsolute(target)
-      ? target
-      : path.join(this.cwd, target);
-
-    if (!await fs.pathExists(filePath)) {
-      return `(file ${target} not found)`;
+    const filePath = Sanitizer.sanitizePath(target, this.cwd);
+    if (!filePath || !await fs.pathExists(filePath)) {
+      return `(file ${target} not found or access denied)`;
     }
 
     const content = await fs.readFile(filePath, 'utf8');
