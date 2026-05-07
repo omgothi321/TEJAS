@@ -289,7 +289,12 @@ Explain as if teaching a junior developer.`;
   async _runCode(target) {
     if (!target) return 'No file specified to run.';
 
-    const filePath = path.join(this.cwd, target);
+    let filePath;
+    try {
+      filePath = Sanitizer.sanitizePath(target, this.cwd);
+    } catch {
+      return `Security: Path not allowed — ${target}`;
+    }
     if (!await fs.pathExists(filePath)) {
       return `File not found: ${target}`;
     }

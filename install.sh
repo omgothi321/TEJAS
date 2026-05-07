@@ -1,6 +1,6 @@
 #!/bin/bash
 # ─────────────────────────────────────────────────────────────────────────────
-#  TEJAS — Installer for Kali Linux / Debian-based systems
+#  TEJAS — Installer for Linux / Debian-based systems (Ubuntu, Kali, etc.)
 #  Run: chmod +x install.sh && ./install.sh
 # ─────────────────────────────────────────────────────────────────────────────
 

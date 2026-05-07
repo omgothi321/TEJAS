@@ -109,7 +109,9 @@ class KnowledgeGraph {
     this._graph.stats.total_nodes = Object.keys(this._graph.nodes).length;
     this._graph.stats.total_edges = this._graph.edges.length;
     
-    await fs.writeJson(this.graphFile, this._graph, { spaces: 2 });
+    const tmpFile = this.graphFile + '.tmp';
+    await fs.writeJson(tmpFile, this._graph, { spaces: 2 });
+    await fs.rename(tmpFile, this.graphFile);
     this._dirty = false;
   }
 

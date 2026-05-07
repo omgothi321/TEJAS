@@ -57,20 +57,20 @@ class AgentRouter {
       return { agent: winner, useNativeExecutor: true, entities: aiIntent.entities };
     }
 
-    var agent = this.agents[winner];
+    const agent = this.agents[winner];
     if (!agent || !agent.run) {
       return { agent: 'workflow', useNativeExecutor: true, entities: aiIntent.entities };
     }
 
     // Pass AI entities to the agent for better automation
-    var result = await agent.run(task, { ...context, entities: aiIntent.entities });
+    const result = await agent.run(task, { ...context, entities: aiIntent.entities });
     return { agent: winner, useNativeExecutor: false, result: result };
   }
 
   // ── CALCULATE ALL SCORES ──────────────────────────────────────────────────
   _calculateScores(task) {
-    var scores = {};
-    var self   = this;
+    const scores = {};
+    const self   = this;
 
     // workflow and robotics scored internally
     scores.workflow = self._scoreWorkflow(task);
@@ -78,7 +78,7 @@ class AgentRouter {
 
     // other agents scored by their own getScore() if available
     ['code', 'file', 'web'].forEach(function(name) {
-      var agent = self.agents[name];
+      const agent = self.agents[name];
       if (agent && agent.getScore) {
         scores[name] = agent.getScore(task);
       } else if (agent && agent.constructor && agent.constructor.canHandle) {
@@ -93,14 +93,14 @@ class AgentRouter {
 
   // ── SELECT WINNER ─────────────────────────────────────────────────────────
   _selectWinner(scores) {
-    var self   = this;
-    var maxScore = Math.max.apply(null, Object.values(scores));
+    const self   = this;
+    const maxScore = Math.max.apply(null, Object.values(scores));
 
     // All zero → safe fallback
     if (maxScore === 0) return 'workflow';
 
     // Sort by score DESC, then by priority ASC for ties
-    var entries = Object.keys(scores).map(function(name) {
+    const entries = Object.keys(scores).map(function(name) {
       return { name: name, score: scores[name] };
     });
 
@@ -115,8 +115,8 @@ class AgentRouter {
   // ── WORKFLOW SCORER ───────────────────────────────────────────────────────
   // Math, system info, shell commands, time, app control
   _scoreWorkflow(task) {
-    var score = 0;
-    var lt    = task.toLowerCase();
+    let score = 0;
+    const lt    = task.toLowerCase();
 
     // Math — highest priority (return early)
     if (/\d+\s*[\+\-\*\/x]\s*\d+/i.test(task)) return 95;
@@ -133,11 +133,11 @@ class AgentRouter {
     }
 
     // App control
-    var sysWords = ['close', 'kill', 'stop', 'minimize', 'launch'];
-    var appWords = ['firefox', 'browser', 'terminal', 'chrome',
+    const sysWords = ['close', 'kill', 'stop', 'minimize', 'launch'];
+    const appWords = ['firefox', 'browser', 'terminal', 'chrome',
                     'chromium', 'nautilus', 'xterm', 'window'];
-    var hasSys = sysWords.some(function(w) { return lt.includes(w); });
-    var hasApp = appWords.some(function(w) { return lt.includes(w); });
+    const hasSys = sysWords.some(function(w) { return lt.includes(w); });
+    const hasApp = appWords.some(function(w) { return lt.includes(w); });
     if (hasSys && hasApp) score += 85;
 
     // Running processes
@@ -178,8 +178,8 @@ class AgentRouter {
 
   // ── EXPLAIN ROUTING ───────────────────────────────────────────────────────
   async explainRouting(task) {
-    var scores   = this._calculateScores(task);
-    var selected = this._selectWinner(scores);
+    const scores   = this._calculateScores(task);
+    const selected = this._selectWinner(scores);
     return { task: task, scores: scores, selected: selected };
   }
 }

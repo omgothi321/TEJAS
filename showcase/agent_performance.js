@@ -9,7 +9,7 @@ const chalk = require('chalk');
 async function testAll() {
     console.log(chalk.bold.blue('--- TEJAS SYSTEM DIAGNOSTIC ---'));
 
-    const cwd = '/home/kali/tejas';
+    const cwd = process.cwd();
     const memory = new MemoryManager(cwd);
     const config = await memory.readConfig();
     const ai = new AIEngine(config);

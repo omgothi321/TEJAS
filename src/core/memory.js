@@ -113,7 +113,9 @@ class MemoryManager {
           os: process.platform
         }
       };
-      await fs.writeJson(this.memFile, mem, { spaces: 2 });
+      const tmpFile = this.memFile + '.tmp';
+      await fs.writeJson(tmpFile, mem, { spaces: 2 });
+      await fs.rename(tmpFile, this.memFile);
       this._memory = mem;
     } else {
       this._memory = await fs.readJson(this.memFile);
@@ -121,7 +123,9 @@ class MemoryManager {
 
     // Config
     if (!await fs.pathExists(this.confFile)) {
-      await fs.writeJson(this.confFile, DEFAULT_CONFIG, { spaces: 2 });
+      const tmpFile = this.confFile + '.tmp';
+      await fs.writeJson(tmpFile, DEFAULT_CONFIG, { spaces: 2 });
+      await fs.rename(tmpFile, this.confFile);
       this._config = DEFAULT_CONFIG;
     } else {
       this._config = await fs.readJson(this.confFile);
@@ -149,7 +153,9 @@ class MemoryManager {
     const current = await this.read();
     const updated = this._deepMerge(current, updates);
     updated.updated_at = new Date().toISOString();
-    await fs.writeJson(this.memFile, updated, { spaces: 2 });
+    const tmpFile = this.memFile + '.tmp';
+    await fs.writeJson(tmpFile, updated, { spaces: 2 });
+    await fs.rename(tmpFile, this.memFile);
     this._memory = updated;
     return updated;
   }
@@ -167,7 +173,9 @@ class MemoryManager {
   async writeConfig(updates = {}) {
     const current = await this.readConfig();
     const updated = this._deepMerge(current, updates);
-    await fs.writeJson(this.confFile, updated, { spaces: 2 });
+    const tmpFile = this.confFile + '.tmp';
+    await fs.writeJson(tmpFile, updated, { spaces: 2 });
+    await fs.rename(tmpFile, this.confFile);
     this._config = updated;
     return updated;
   }
@@ -289,14 +297,18 @@ class MemoryManager {
   // ── EXPORT ────────────────────────────────────────────────────────────────
   async export(filePath) {
     const mem = await this.read();
-    await fs.writeJson(filePath, mem, { spaces: 2 });
+    const tmpFile = filePath + '.tmp';
+    await fs.writeJson(tmpFile, mem, { spaces: 2 });
+    await fs.rename(tmpFile, filePath);
     return filePath;
   }
 
   // ── IMPORT ────────────────────────────────────────────────────────────────
   async import(filePath) {
     const imported = await fs.readJson(filePath);
-    await fs.writeJson(this.memFile, imported, { spaces: 2 });
+    const tmpFile = this.memFile + '.tmp';
+    await fs.writeJson(tmpFile, imported, { spaces: 2 });
+    await fs.rename(tmpFile, this.memFile);
     this._memory = imported;
     return imported;
   }

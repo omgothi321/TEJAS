@@ -26,7 +26,7 @@ Failed step:
 ${JSON.stringify(step, null, 2)}
 
 Error received:
-${error}
+${String(error).slice(0, 200).replace(/[`$]/g, '')}
 
 Provide a corrected step. Respond ONLY with valid JSON:
 {
