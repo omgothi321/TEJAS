@@ -305,6 +305,9 @@ class MemoryManager {
   _deepMerge(target, source) {
     const result = { ...target };
     for (const key of Object.keys(source)) {
+      // 🛡️ Prototype pollution guard
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
+
       if (
         source[key] !== null &&
         typeof source[key] === 'object' &&

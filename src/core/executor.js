@@ -109,9 +109,10 @@ class Executor {
       console.log(chalk.gray(`    $ ${safeCommand}`));
     }
 
-    // Still using exec for arbitrary shell strings (like arithmetic expansions)
-    // but the sanitizer now blocks injection operators.
-    const { stdout, stderr } = await execAsync(safeCommand, {
+    // Split command into array and use execFile for maximum security.
+    // This bypasses the shell entirely.
+    const parts = safeCommand.split(' ').filter(Boolean);
+    const { stdout, stderr } = await execFileAsync(parts[0], parts.slice(1), {
       cwd:     this.cwd,
       timeout: this.timeout,
       env:     { ...process.env }

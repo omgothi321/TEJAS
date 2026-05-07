@@ -46,7 +46,7 @@ class TejasB {
 
     // 1. Cache check — instant, free
     if (!options.skipCache) {
-      var cached = await this.cache.get(task);
+      const cached = await this.cache.get(task);
       if (cached && cached.hit && cached.confidence >= 0.9) {
         this._stats.cache_hits++;
         return Object.assign({}, cached.plan, {
@@ -58,7 +58,7 @@ class TejasB {
     }
 
     // 2. Memory context
-    var memCtx = {};
+    let memCtx = {};
     try {
       memCtx = await this._getMemoryContext(task) || {};
     } catch (err) {
@@ -66,20 +66,20 @@ class TejasB {
     }
 
     // 3. Model selection
-    var sel           = this.modelRouter.selectModel(task, options);
-    var originalModel = this.ai.model;
+    const sel           = this.modelRouter.selectModel(task, options);
+    const originalModel = this.ai.model;
     if (sel.model !== originalModel) this.ai.model = sel.model;
 
     // 4. Build prompt
-    var prompt = buildDecomposePrompt(task, memCtx);
+    const prompt = buildDecomposePrompt(task, memCtx);
 
     // 5. AI call + SAFE parsing (Grok audit fix)
     this._stats.api_calls++;
-    var start = Date.now();
-    var plan  = null;
+    const start = Date.now();
+    let plan  = null;
 
     try {
-      var raw = await this.ai.call(prompt);
+      const raw = await this.ai.call(prompt);
       plan    = this.ai._parseJSON(raw);
 
       // ── CRITICAL SAFETY GUARD ─────────────────────────────────────────────
@@ -115,17 +115,17 @@ class TejasB {
   async call(prompt, options) {
     options = options || {};
     this._stats.api_calls++;
-    var sel           = this.modelRouter.selectModel(
+    const sel           = this.modelRouter.selectModel(
       prompt.slice(0, 100), options
     );
-    var originalModel = this.ai.model;
+    const originalModel = this.ai.model;
 
     if (sel.model !== originalModel && !options.keepModel) {
       this.ai.model = sel.model;
     }
 
     try {
-      var enriched = options.injectConstitution
+      const enriched = options.injectConstitution
         ? CONSTITUTION + '\n\n' + prompt
         : prompt;
       return await this.ai.call(enriched);
@@ -149,8 +149,8 @@ class TejasB {
 
   // ── GET STATS ─────────────────────────────────────────────────────────────
   async getStats() {
-    var cacheStats = await this.cache.getStats();
-    var modelStats = this.modelRouter.getStats();
+    const cacheStats = await this.cache.getStats();
+    const modelStats = this.modelRouter.getStats();
     return {
       session:    this._stats,
       cache:      cacheStats,
@@ -168,15 +168,15 @@ class TejasB {
     if (!output || String(output).trim().length < 5) {
       return { solved: true, confidence: 100, next_step: null };
     }
-    var t = String(task).replace(/"/g, "'");
-    var o = String(output).slice(0, 300).replace(/"/g, "'");
-    var prompt = 'Task: ' + t +
+    const t = String(task).replace(/"/g, "'");
+    const o = String(output).slice(0, 300).replace(/"/g, "'");
+    const prompt = 'Task: ' + t +
       '\nOutput: ' + o +
       '\nDid this fully solve the task? ' +
       'JSON only: {"solved":true,"confidence":100,"next_step":null}';
     try {
-      var raw    = await this.ai.call(prompt);
-      var result = this.ai._parseJSON(raw);
+      const raw    = await this.ai.call(prompt);
+      const result = this.ai._parseJSON(raw);
       return result || { solved: true, confidence: 100, next_step: null };
     } catch (err) {
       if (this.config.verbose) console.warn('[Brain] Reflection failed:', err.message);

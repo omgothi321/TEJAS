@@ -39,7 +39,7 @@ const tejasBin = path.join(projectRoot, 'bin/tejas.js');
 
 // Handle polling errors gracefully
 bot.on('polling_error', (error) => {
-  // Silent network errors
+  console.error('[Telegram polling error]', error.message);
 });
 
 bot.on('error', (error) => {

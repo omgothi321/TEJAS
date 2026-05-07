@@ -34,11 +34,11 @@ Score this output. Return JSON only, no extra text:
       const raw    = await this.ai.call(prompt);
       const result = this.ai._parseJSON(raw);
       if (!result || typeof result.score === 'undefined') {
-        return { score: 75, passed: true, issues: [], fix: null, summary: 'Passed' };
+        return { score: 0, passed: false, issues: ['AI failed to return valid score'], fix: 'Retry', summary: 'Failed analysis' };
       }
       return result;
     } catch {
-      return { score: 75, passed: true, issues: [], fix: null, summary: 'Passed' };
+      return { score: 0, passed: false, issues: ['Judge failed (AI error)'], fix: 'Retry', summary: 'Judge offline' };
     }
   }
 
@@ -58,11 +58,11 @@ Does this code solve the task? Return JSON only:
       const raw    = await this.ai.call(prompt);
       const result = this.ai._parseJSON(raw);
       if (!result || typeof result.score === 'undefined') {
-        return { score: 75, passed: true, will_run: true, issues: [], fixed_code: null };
+        return { score: 0, passed: false, will_run: false, issues: ['AI failed to return valid score'], fixed_code: null };
       }
       return result;
     } catch {
-      return { score: 75, passed: true, will_run: true, issues: [], fixed_code: null };
+      return { score: 0, passed: false, will_run: false, issues: ['Judge failed (AI error)'], fixed_code: null };
     }
   }
 
@@ -84,11 +84,11 @@ Is this valid ${ext} content for the task? Return JSON only:
       const raw    = await this.ai.call(prompt);
       const result = this.ai._parseJSON(raw);
       if (!result || typeof result.score === 'undefined') {
-        return { score: 75, passed: true, issues: [], better_content: null };
+        return { score: 0, passed: false, issues: ['AI failed to return valid score'], better_content: null };
       }
       return result;
     } catch {
-      return { score: 75, passed: true, issues: [], better_content: null };
+      return { score: 0, passed: false, issues: ['Judge failed (AI error)'], better_content: null };
     }
   }
 
