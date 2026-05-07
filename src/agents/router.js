@@ -152,8 +152,8 @@ class AgentRouter {
   // ── ROBOTICS SCORER — TejasArm ────────────────────────────────────────────
   // Physical world control — always wins when detected
   _scoreRobotics(task) {
-    var lt = task.toLowerCase();
-    var roboticsTriggers = [
+    const lt = task.toLowerCase();
+    const roboticsTriggers = [
       'move arm', 'rotate joint', 'tejasarm', 'pick object',
       'drop object', 'gpio', 'sensor', 'robot control',
       'physical world', 'raspberry pi pin', 'arduino',

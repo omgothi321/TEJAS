@@ -1,6 +1,6 @@
 'use strict';
 
-const { exec, execSync, execFile } = require('child_process');
+const { execFile } = require('child_process');
 const { promisify }       = require('util');
 const fs                  = require('fs-extra');
 const path                = require('path');
@@ -8,7 +8,6 @@ const chalk               = require('chalk');
 const Sanitizer           = require('../utils/sanitizer');
 const { parse }           = require('shell-quote');
 
-const execAsync = promisify(exec);
 const execFileAsync = promisify(execFile);
 
 // ─── EXECUTOR ─────────────────────────────────────────────────────────────────
@@ -54,29 +53,19 @@ class Executor {
           result.output = await this._writeFile(step.path, step.content);
           break;
         case 'explain':
-          _isAllowedUrl(url) {
-            try {
-              const u = new URL(url);
-              if (!['http:', 'https:'].includes(u.protocol)) return false;
-              const blocked = /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.)/i;
-              return !blocked.test(u.hostname);
-            } catch { return false; }
+          result.output = step.description;
+          break;
+        case 'api_call':
+          if (step.url) {
+            if (!this._isAllowedUrl(step.url)) {
+              result.output = `Blocked unsafe URL: ${step.url}`;
+            } else {
+              result.output = await this._runShellArray('curl', ['-s', '--max-time', '10', step.url]);
+            }
+          } else {
+            result.output = '[No URL provided for api_call]';
           }
-
-          async execute(step) {
-          ...
-                case 'api_call':
-                  // Hardened API call using curl with args array
-                  if (step.url) {
-                    if (!this._isAllowedUrl(step.url)) {
-                        result.output = `Blocked unsafe URL: ${step.url}`;
-                    } else {
-                        result.output = await this._runShellArray('curl', ['-s', '--max-time', '10', step.url]);
-                    }
-                  } else {
-                    result.output = '[No URL provided for api_call]';
-                  }
-                  break;
+          break;
         case 'ask_user':
           result.output = '[User input required — handled by caller]';
           result.needs_input = true;
@@ -93,10 +82,17 @@ class Executor {
     return result;
   }
 
-  /**
-   * Executes a command using an argument array for maximum security.
-   * Prevents shell injection by bypassing the shell entirely.
-   */
+  // ── URL ALLOWLIST (SSRF Prevention) ───────────────────────────────────────
+  _isAllowedUrl(url) {
+    try {
+      const u = new URL(url);
+      if (!['http:', 'https:'].includes(u.protocol)) return false;
+      const blocked = /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.)/i;
+      return !blocked.test(u.hostname);
+    } catch { return false; }
+  }
+
+  // ── SHELL ARRAY (Primary — no shell spawn) ────────────────────────────────
   async _runShellArray(cmd, args) {
     if (this.verbose) {
       console.log(chalk.gray(`    $ ${cmd} ${args.join(' ')}`));
@@ -109,12 +105,12 @@ class Executor {
     return (stdout || stderr || '').trim();
   }
 
+  // ── SHELL STRING (Secondary — sanitized + parsed) ─────────────────────────
   async _runShell(command) {
     if (!command) throw new Error('No command provided');
 
-    // Sanitization remains as a secondary defense layer
     const safeCommand = Sanitizer.sanitizeShell(command);
-    
+
     if (!this.isSafeCommand(safeCommand)) {
       throw new Error(`Blocked dangerous command pattern. Tejas will not run this.`);
     }
@@ -123,8 +119,6 @@ class Executor {
       console.log(chalk.gray(`    $ ${safeCommand}`));
     }
 
-    // Split command into array and use execFile for maximum security.
-    // This bypasses the shell entirely.
     const parts = parse(safeCommand);
     const { stdout, stderr } = await execFileAsync(parts[0], parts.slice(1), {
       cwd:     this.cwd,
@@ -150,13 +144,18 @@ class Executor {
     return `Written: ${fullPath}`;
   }
 
+  // ── SAFE COMMAND CHECK ────────────────────────────────────────────────────
   isSafeCommand(command) {
-    const dangerous = [
-      'rm -rf /', 'mkfs', 'dd if=', ':(){:|:&};:',
-      'chmod -R 777 /', 'chown -R', '> /dev/sda',
-      'mv /* ', 'wget -O- | sh', 'curl | sh', 'curl | bash'
+    const patterns = [
+      /rm\s+-rf\s+\//i,
+      /mkfs/i,
+      /dd\s+if=/i,
+      /:\(\)\{:\|:&\};:/,
+      /chmod\s+-R\s+777\s+\//i,
+      /curl\s*\|\s*(ba)?sh/i,
+      /wget[^|]+\|\s*(ba)?sh/i
     ];
-    return !dangerous.some(d => command.includes(d));
+    return !patterns.some(p => p.test(command));
   }
 
   async detectEnvironment() {
@@ -181,7 +180,6 @@ class Executor {
 
     for (const { tool, cmd } of toolChecks) {
       try {
-        // Safe tool check using execFile
         await execFileAsync(cmd, ['--version'], { stdio: 'pipe' });
         info.tools.push(tool);
       } catch {}

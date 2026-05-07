@@ -31,7 +31,7 @@ const SAFE_PREFIXES = [
   'cat ', 'ls ', 'pwd ', 'echo ', 'mkdir ',
   'touch ', 'cp ', 'mv ', 'grep ', 'find ',
   'curl ', 'wget ', 'ping ', 'which ', 'whoami',
-  'cd ', 'rm ', 'chmod ', 'chown ',
+  'cd ',
   'docker ', 'yarn ', 'npx ', 'pip ',
   'make ', 'gcc ', 'go ', 'cargo ',
   'systemctl status', 'ps aux', 'top', 'df ', 'du ',

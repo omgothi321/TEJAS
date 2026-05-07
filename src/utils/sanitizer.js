@@ -12,24 +12,29 @@ class Sanitizer {
    */
   static sanitizeShell(command) {
     if (!command) return '';
-    
-    // Block command chaining and redirection that could be used for injection
-    const forbidden = [';', '&&', '||', '|', '>', '<', '`'];
-    
-    // Check for common injection patterns
-    if (forbidden.some(char => command.includes(char)) || (command.includes('$(') && !command.includes('$(('))) {
-      // If it has a pipe or redirect, it MUST be a known safe tool like grep or sort
-      const safePipes = ['| grep', '| sort', '| head', '| tail', '| uniq', '| awk'];
-      const hasPipe = command.includes('|');
-      
-      if (hasPipe) {
-        const isSafePipe = safePipes.some(p => command.includes(p));
-        if (!isSafePipe) {
+
+    // Block non-pipe dangerous operators first (these are never safe)
+    const nonPipeOps = [';', '&&', '||', '>', '<', '`'];
+    for (const op of nonPipeOps) {
+      if (command.includes(op)) {
+        throw new Error(`Forbidden shell operator detected in: "${command}"`);
+      }
+    }
+
+    // Block command substitution $() but allow arithmetic $((
+    if (command.includes('$(') && !command.includes('$((')) {
+      throw new Error(`Forbidden shell operator detected in: "${command}"`);
+    }
+
+    // If pipe present, validate EACH segment individually
+    if (command.includes('|')) {
+      const segments = command.split('|');
+      const allowedPipeCmds = ['grep', 'sort', 'head', 'tail', 'uniq', 'awk', 'wc', 'cut', 'sed'];
+      for (const seg of segments.slice(1)) {
+        const cmd = seg.trim().split(' ')[0];
+        if (!allowedPipeCmds.includes(cmd)) {
           throw new Error(`Potentially dangerous shell operator detected in: "${command}"`);
         }
-      } else {
-        // Block other operators entirely for now
-        throw new Error(`Forbidden shell operator detected in: "${command}"`);
       }
     }
 

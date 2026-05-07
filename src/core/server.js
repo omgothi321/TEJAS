@@ -282,7 +282,9 @@ class DashboardServer {
         type:  'stats_update',
         stats: { memory: mem.stats, graph }
       });
-    } catch {}
+    } catch (e) {
+      if (this.verbose) console.warn('[Dashboard] Stats broadcast failed:', e.message);
+    }
   }
 
   // ── READ REQUEST BODY ─────────────────────────────────────────────────────
@@ -749,15 +751,15 @@ async function loadTasks() {
 async function loadAgents() {
   const data = await api('/api/agents');
   if (!data.agents) return;
-  document.getElementById('agent-grid').innerHTML = data.agents.map(a => \`
+  document.getElementById('agent-grid').innerHTML = data.agents.map(a => `
     <div class="agent-item">
-      <div class="agent-dot \${a.status}"></div>
+      <div class="agent-dot ${escHtml(a.status || '')}"></div>
       <div>
-        <div class="agent-name">\${a.name}</div>
-        <div class="agent-desc">\${a.description}</div>
+        <div class="agent-name">${escHtml(a.name || '')}</div>
+        <div class="agent-desc">${escHtml(a.description || '')}</div>
       </div>
     </div>
-  \`).join('');
+  `).join('');
 }
 
 async function loadGraph() {
@@ -775,13 +777,13 @@ async function loadPatterns() {
     el.innerHTML = '<div style="color:var(--muted);font-size:12px">No patterns yet — keep using Tejas!</div>';
     return;
   }
-  el.innerHTML = data.patterns.map(p => \`
+  el.innerHTML = data.patterns.map(p => `
     <div class="pattern-item">
-      <div class="pattern-label">\${p.type.replace('_', ' ')} — \${p.count}×</div>
-      <div>\${p.label}</div>
-      <div class="pattern-tip">💡 \${p.suggestion}</div>
+      <div class="pattern-label">${escHtml((p.type || '').replace('_', ' '))} — ${escHtml(String(p.count || 0))}×</div>
+      <div>${escHtml(p.label || '')}</div>
+      <div class="pattern-tip">💡 ${escHtml(p.suggestion || '')}</div>
     </div>
-  \`).join('');
+  `).join('');
 }
 
 // ── RUN TASK ──────────────────────────────────────────────────────────────────
@@ -809,13 +811,13 @@ async function searchMemory() {
     el.innerHTML = '<div style="color:var(--muted);font-size:12px">No results found.</div>';
     return;
   }
-  el.innerHTML = data.results.slice(0, 6).map(r => \`
+  el.innerHTML = data.results.slice(0, 6).map(r => `
     <div class="search-item">
-      <span class="node-score">★ \${(r.relevance_score||0).toFixed(1)}</span>
-      <div class="node-type">\${r.type}</div>
-      <div class="node-label">\${r.label}</div>
+      <span class="node-score">★ ${(r.relevance_score||0).toFixed(1)}</span>
+      <div class="node-type">${escHtml(r.type || '')}</div>
+      <div class="node-label">${escHtml(r.label || '')}</div>
     </div>
-  \`).join('');
+  `).join('');
 }
 
 // ── LIVE FEED ─────────────────────────────────────────────────────────────────
@@ -824,7 +826,7 @@ function addFeedEntry(type, ts, agent, message) {
   const time = ts ? new Date(ts).toLocaleTimeString() : new Date().toLocaleTimeString();
   const div  = document.createElement('div');
   div.className = 'feed-entry ' + type;
-  div.innerHTML = \`<span class="ts">\${time} </span><span class="agent">[\${agent}] </span>\${message.slice(0,150)}\`;
+  div.innerHTML = `<span class="ts">${escHtml(time)} </span><span class="agent">[${escHtml(agent || '')}] </span>${escHtml(message.slice(0,150))}`;
   feed.insertBefore(div, feed.firstChild);
   if (feed.children.length > 50) feed.removeChild(feed.lastChild);
 }

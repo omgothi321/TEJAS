@@ -166,7 +166,7 @@ class TejasB {
   // ── AUTOGPT: SELF REFLECTION ──────────────────────────────────────────────
   async reflect(task, output) {
     if (!output || String(output).trim().length < 5) {
-      return { solved: true, confidence: 100, next_step: null };
+      return { solved: false, confidence: 0, next_step: 'retry' };
     }
     const t = String(task).replace(/"/g, "'");
     const o = String(output).slice(0, 300).replace(/"/g, "'");
