@@ -180,7 +180,7 @@ class TejasB {
       return result || { solved: true, confidence: 100, next_step: null };
     } catch (err) {
       if (this.config.verbose) console.warn('[Brain] Reflection failed:', err.message);
-      return { solved: true, confidence: 100, next_step: null };
+      return { solved: false, confidence: 0, next_step: 'retry' };
     }
   }
 

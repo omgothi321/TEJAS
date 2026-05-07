@@ -6,6 +6,7 @@ const fs                  = require('fs-extra');
 const path                = require('path');
 const chalk               = require('chalk');
 const Sanitizer           = require('../utils/sanitizer');
+const { parse }           = require('shell-quote');
 
 const execAsync = promisify(exec);
 const execFileAsync = promisify(execFile);
@@ -111,7 +112,7 @@ class Executor {
 
     // Split command into array and use execFile for maximum security.
     // This bypasses the shell entirely.
-    const parts = safeCommand.split(' ').filter(Boolean);
+    const parts = parse(safeCommand);
     const { stdout, stderr } = await execFileAsync(parts[0], parts.slice(1), {
       cwd:     this.cwd,
       timeout: this.timeout,
