@@ -78,7 +78,7 @@ class AIEngine {
     if (systemPrompt) messages.push({ role: 'system', content: systemPrompt });
     messages.push({ role: 'user', content: prompt });
     const res = await axios.post('https://api.x.ai/v1/chat/completions', {
-      model:       options.xai_model || 'grok-beta',
+      model:       options.xai_model || 'grok-3',
       max_tokens:  options.max_tokens || 4096,
       temperature: options.temperature || 0.7,
       messages
@@ -93,7 +93,18 @@ class AIEngine {
   async _callGemini(prompt, systemPrompt, options = {}) {
     const apiKey = this.apiKeys.gemini || process.env.GEMINI_API_KEY;
     if (!apiKey) throw new Error('No Gemini API key. Get free key at aistudio.google.com → Run: tejas config --set api_keys.gemini=YOUR_KEY');
-    const model   = options.gemini_model || 'gemini-1.5-flash';
+    
+    // Map simple versions to full IDs
+    let model = options.gemini_model || options.gemini_version || '3.0';
+    if (model === '1.5') model = 'gemini-1.5-pro';
+    if (model === '1.5-flash') model = 'gemini-1.5-flash';
+    if (model === '2.0') model = 'gemini-2.0-pro';
+    if (model === '2.0-flash') model = 'gemini-2.0-flash';
+    if (model === '2.5') model = 'gemini-2.5-pro';
+    if (model === '3.0') model = 'gemini-3.0-pro';
+    if (model === '3.0-flash') model = 'gemini-3.0-flash';
+    if (!model.startsWith('gemini-')) model = `gemini-${model}-pro`;
+
     const url     = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
     const parts   = [];
     if (systemPrompt) parts.push({ text: systemPrompt + '\n\n' });

@@ -6,9 +6,9 @@
 //
 // Model strengths:
 //   Groq (Llama 3.3 70B) → best speed, great reasoning, free
-//   Gemini Flash          → best for web/search tasks, huge context, free
-//   xAI Grok             → great at analysis and current events, $175 free
-//   DeepSeek             → best at code generation, very cheap
+//   Gemini 3 Pro        → best for web/search tasks, massive context, free
+//   xAI Grok 3           → top-tier analysis and current events
+//   DeepSeek V3          → best at code generation, very cheap
 //   Ollama               → fully offline, no cost, slower
 
 const ROUTING_RULES = [
@@ -18,6 +18,7 @@ const ROUTING_RULES = [
     triggers: ['write code', 'function', 'script', 'debug', 'fix bug',
                 'review code', 'refactor', 'implement', 'algorithm'],
     prefer:   ['deepseek', 'groq', 'gemini'],
+    options:  { gemini_version: '3.0' },
     reason:   'Code specialized models produce better code'
   },
   // Web/search tasks → Gemini (huge context, web-aware)
@@ -26,15 +27,17 @@ const ROUTING_RULES = [
     triggers: ['search', 'find online', 'latest', 'current', 'news',
                 'fetch', 'url', 'website', 'today', 'price', 'weather'],
     prefer:   ['gemini', 'groq', 'xai'],
-    reason:   'Gemini has best web awareness and large context'
+    options:  { gemini_version: '1.5-flash' }, // Flash is fine for web
+    reason:   'Gemini Flash has best web awareness and large context'
   },
   // Analysis/reasoning → xAI or Groq
   {
     name:     'analysis',
     triggers: ['analyze', 'explain', 'understand', 'why', 'compare',
-                'review', 'evaluate', 'assess', 'research'],
-    prefer:   ['xai', 'groq', 'gemini'],
-    reason:   'xAI and Groq excel at deep reasoning'
+                'review', 'evaluate', 'assess', 'research', 'complex'],
+    prefer:   ['xai', 'gemini', 'groq'],
+    options:  { gemini_version: '3.0', xai_model: 'grok-3' },
+    reason:   'xAI Grok 3 and Gemini 3 Pro excel at deep reasoning'
   },
   // Quick/simple tasks → Groq (fastest free)
   {
@@ -42,6 +45,7 @@ const ROUTING_RULES = [
     triggers: ['create file', 'make directory', 'git', 'npm install',
                 'run', 'execute', 'list', 'show', 'print'],
     prefer:   ['groq', 'gemini', 'ollama'],
+    options:  { gemini_version: '1.5-flash' },
     reason:   'Fast models for simple operations'
   },
   // Offline/private tasks → Ollama
@@ -76,9 +80,10 @@ class SmartModelRouter {
         for (const preferred of rule.prefer) {
           if (this.available[preferred]) {
             return {
-              model:  preferred,
-              rule:   rule.name,
-              reason: rule.reason
+              model:   preferred,
+              rule:    rule.name,
+              reason:  rule.reason,
+              options: rule.options || {}
             };
           }
         }
