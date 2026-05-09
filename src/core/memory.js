@@ -4,9 +4,12 @@ const fs   = require('fs-extra');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { KnowledgeGraph } = require('./graph');
+const TejasDatabase = require('./database');
+const EmbeddingService = require('./embeddings');
 
 // ─── PATHS ───────────────────────────────────────────────────────────────────
 const TEJAS_DIR     = '.tejas';
+const DB_FILE       = 'tejas.db';
 const MEMORY_FILE   = 'memory.json';
 const CONFIG_FILE   = 'config.json';
 const LOGS_DIR      = 'logs';
@@ -83,13 +86,17 @@ class MemoryManager {
   constructor(rootDir = process.cwd()) {
     this.rootDir   = rootDir;
     this.tejasDir  = path.join(rootDir, TEJAS_DIR);
+    this.dbPath    = path.join(this.tejasDir, DB_FILE);
     this.memFile   = path.join(this.tejasDir, MEMORY_FILE);
     this.confFile  = path.join(this.tejasDir, CONFIG_FILE);
     this.logsDir   = path.join(this.tejasDir, LOGS_DIR);
     this._memory   = null;
     this._config   = null;
+
+    this.db         = new TejasDatabase(this.tejasDir);
+    this.embeddings = new EmbeddingService(this.tejasDir);
     // ── Knowledge Graph (v0.2) ──
-    this.graph     = new KnowledgeGraph(path.join(rootDir, TEJAS_DIR));
+    this.graph     = new KnowledgeGraph(this.tejasDir, this.db, this.embeddings);
   }
 
   // ── INIT ─────────────────────────────────────────────────────────────────
@@ -97,85 +104,115 @@ class MemoryManager {
     await fs.ensureDir(this.tejasDir);
     await fs.ensureDir(this.logsDir);
 
-    // Memory
-    if (!await fs.pathExists(this.memFile)) {
-      const mem = {
-        ...DEFAULT_MEMORY,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        project: {
-          ...DEFAULT_MEMORY.project,
-          root: this.rootDir,
-          ...projectMeta
-        },
-        world_model: {
-          ...DEFAULT_MEMORY.world_model,
-          os: process.platform
-        }
-      };
-      const tmpFile = this.memFile + '.tmp';
-      await fs.writeJson(tmpFile, mem, { spaces: 2 });
-      await fs.rename(tmpFile, this.memFile);
-      this._memory = mem;
-    } else {
-      this._memory = await fs.readJson(this.memFile);
+    // 1. Initialize DB & Embeddings
+    await this.db.initialize();
+    // Embeddings init is lazy/on-demand in its class, but we can warm it up
+    // await this.embeddings.initialize();
+
+    // 2. Migration or Initial Load
+    const hasDb = await this._hasDataInDb();
+    const hasJson = await fs.pathExists(this.memFile);
+
+    if (!hasDb && hasJson) {
+      console.log('Migrating Tejas memory to SQLite...');
+      await this._migrateJsonToSqlite();
+    } else if (!hasDb && !hasJson) {
+      await this._initDefaultData(projectMeta);
     }
 
-    // Config
-    if (!await fs.pathExists(this.confFile)) {
-      const tmpFile = this.confFile + '.tmp';
-      await fs.writeJson(tmpFile, DEFAULT_CONFIG, { spaces: 2 });
-      await fs.rename(tmpFile, this.confFile);
-      this._config = DEFAULT_CONFIG;
-    } else {
-      this._config = await fs.readJson(this.confFile);
-    }
+    // 3. Load active state
+    this._memory = await this.read();
+    this._config = await this.readConfig();
 
     return { memory: this._memory, config: this._config };
   }
 
+  async _hasDataInDb() {
+    const row = this.db.db.prepare("SELECT count(*) as count FROM settings WHERE key = 'memory'").get();
+    return row && row.count > 0;
+  }
+
+  async _initDefaultData(projectMeta) {
+    const mem = {
+      ...DEFAULT_MEMORY,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      project: {
+        ...DEFAULT_MEMORY.project,
+        root: this.rootDir,
+        ...projectMeta
+      },
+      world_model: {
+        ...DEFAULT_MEMORY.world_model,
+        os: process.platform
+      }
+    };
+    await this.write(mem);
+    await this.writeConfig(DEFAULT_CONFIG);
+  }
+
+  async _migrateJsonToSqlite() {
+    const mem = await fs.readJson(this.memFile);
+    const conf = await fs.pathExists(this.confFile) ? await fs.readJson(this.confFile) : DEFAULT_CONFIG;
+    
+    await this.write(mem);
+    await this.writeConfig(conf);
+
+    // Migrate graph if exists
+    await this.graph.migrate();
+
+    // Backup old files
+    await fs.rename(this.memFile, this.memFile + '.bak');
+    if (await fs.pathExists(this.confFile)) await fs.rename(this.confFile, this.confFile + '.bak');
+    console.log('Migration complete. Old files backed up to .bak');
+  }
+
   // ── CHECK EXISTS ──────────────────────────────────────────────────────────
   async exists() {
-    return fs.pathExists(this.memFile);
+    return this._hasDataInDb();
   }
 
   // ── READ MEMORY ───────────────────────────────────────────────────────────
   async read() {
-    if (!await this.exists()) {
-      throw new Error('Tejas not initialized. Run: tejas init');
-    }
-    this._memory = await fs.readJson(this.memFile);
+    const row = this.db.db.prepare("SELECT value FROM settings WHERE key = 'memory'").get();
+    if (!row) return DEFAULT_MEMORY;
+    this._memory = JSON.parse(row.value);
     return this._memory;
   }
 
   // ── WRITE MEMORY ──────────────────────────────────────────────────────────
   async write(updates = {}) {
-    const current = await this.read();
-    const updated = this._deepMerge(current, updates);
+    const current = (await this.exists()) ? await this.read() : DEFAULT_MEMORY;
+    // If updates is a full object (has version), use it directly
+    const updated = updates.version ? updates : this._deepMerge(current, updates);
     updated.updated_at = new Date().toISOString();
-    const tmpFile = this.memFile + '.tmp';
-    await fs.writeJson(tmpFile, updated, { spaces: 2 });
-    await fs.rename(tmpFile, this.memFile);
+    
+    this.db.db.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('memory', ?)")
+      .run(JSON.stringify(updated));
+    
     this._memory = updated;
     return updated;
   }
 
   // ── READ CONFIG ───────────────────────────────────────────────────────────
   async readConfig() {
-    if (!await fs.pathExists(this.confFile)) {
-      throw new Error('Tejas not initialized. Run: tejas init');
-    }
-    this._config = await fs.readJson(this.confFile);
+    const row = this.db.db.prepare("SELECT value FROM settings WHERE key = 'config'").get();
+    if (!row) return DEFAULT_CONFIG;
+    this._config = JSON.parse(row.value);
     return this._config;
   }
 
   // ── WRITE CONFIG ──────────────────────────────────────────────────────────
   async writeConfig(updates = {}) {
-    const current = await this.readConfig();
-    const updated = this._deepMerge(current, updates);
-    const tmpFile = this.confFile + '.tmp';
-    await fs.writeJson(tmpFile, updated, { spaces: 2 });
-    await fs.rename(tmpFile, this.confFile);
+    const current = (await this.db.db.prepare("SELECT count(*) as count FROM settings WHERE key = 'config'").get().count > 0)
+      ? await this.readConfig()
+      : DEFAULT_CONFIG;
+    
+    const updated = updates.model ? updates : this._deepMerge(current, updates);
+    
+    this.db.db.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('config', ?)")
+      .run(JSON.stringify(updated));
+    
     this._config = updated;
     return updated;
   }
@@ -213,36 +250,54 @@ class MemoryManager {
   // ── LOG TASK ──────────────────────────────────────────────────────────────
   async logTask(task) {
     const mem = await this.read();
-    const entry = {
-      id: uuidv4(),
-      timestamp: new Date().toISOString(),
-      ...task
-    };
-    mem.agents.history.unshift(entry);
-    // Keep only last 100
-    if (mem.agents.history.length > 100) {
-      mem.agents.history = mem.agents.history.slice(0, 100);
+    const id = uuidv4();
+    const timestamp = new Date().toISOString();
+    const entry = { id, timestamp, ...task };
+
+    // 1. Semantic Embedding
+    let embedding = null;
+    try {
+      embedding = await this.embeddings.embed(task.task);
+    } catch (err) {
+      if (this._config?.preferences?.verbose) console.warn('[Memory] Embedding failed:', err.message);
     }
-    mem.agents.last_active = entry.timestamp;
+
+    // 2. Persistent SQL Log
+    try {
+      this.db.db.prepare(`
+        INSERT INTO tasks (id, task, embedding, agent, success, duration_ms, plan)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `).run(
+        id,
+        task.task,
+        embedding ? Buffer.from(embedding.buffer) : null,
+        task.agent,
+        task.success ? 1 : 0,
+        task.duration_ms || 0,
+        JSON.stringify(task.steps_detail || [])
+      );
+    } catch (err) {
+      console.error('[Memory] SQL Log failed:', err.message);
+    }
+
+    // 3. Update legacy memory state (shrunk)
+    mem.agents.history.unshift(entry);
+    if (mem.agents.history.length > 50) mem.agents.history = mem.agents.history.slice(0, 50);
+    mem.agents.last_active = timestamp;
     mem.stats.tasks_run++;
     mem.stats.total_interactions++;
-    await this.write({
-      agents: mem.agents,
-      stats: mem.stats
-    });
+    
+    await this.write({ agents: mem.agents, stats: mem.stats });
 
-    // Also write to log file
-    const logFile = path.join(this.logsDir, `${new Date().toISOString().split('T')[0]}.log`);
-    await fs.appendFile(logFile, JSON.stringify(entry) + '\n');
-
-    // ── Feed Knowledge Graph (v0.2) ──
+    // 4. Knowledge Graph Ingestion
     await this.graph.ingestTask({
       task:        task.task,
       steps:       task.steps_detail || [],
       success:     task.success,
       agent:       task.agent,
       duration_ms: task.duration_ms,
-      error:       task.error_message || null
+      error:       task.error_message || null,
+      embedding:   embedding
     });
 
     return entry;

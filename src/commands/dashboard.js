@@ -3,7 +3,7 @@
 const chalk           = require('chalk');
 const MemoryManager   = require('../core/memory');
 const SecurityManager = require('../security/security');
-const DashboardServer = require('../dashboard/server');
+const DashboardServer = require('../core/server');
 const display         = require('../utils/display');
 const path            = require('path');
 

@@ -1,31 +1,34 @@
 const path = require('path');
-// Use relative path for .env based on project root
-const projectRoot = path.join(__dirname, '../..');
-require('dotenv').config({ path: path.join(projectRoot, '.env') });
-
+const fs = require('fs');
 const TelegramBot = require('node-telegram-bot-api');
 const { execFile } = require('child_process');
-const fs = require('fs');
 
-// 🔐 Token from .env
-const token = process.env.TELEGRAM_BOT_TOKEN;
+// 🔐 Load keys from keys.env (Custom Format)
+const keysPath = '/home/kali/.tejas/keys.env';
+let token = null;
+let authorizedIds = [];
+
+if (fs.existsSync(keysPath)) {
+  const content = fs.readFileSync(keysPath, 'utf8');
+  const lines = content.split('\n');
+  lines.forEach(line => {
+    const [key, value] = line.trim().split(' ');
+    if (key === 'telegram') token = value;
+    if (key === 'telegram_owner') authorizedIds.push(parseInt(value));
+  });
+}
 
 if (!token) {
-  console.error("❌ ERROR: TELEGRAM_BOT_TOKEN not found in .env");
+  console.error("❌ ERROR: telegram token not found in keys.env");
   process.exit(1);
 }
 
-// 👤 Authorized IDs from .env (comma-separated string)
-const AUTHORIZED_IDS = (process.env.TELEGRAM_AUTHORIZED_IDS || "")
-  .split(',')
-  .map(id => parseInt(id.trim()))
-  .filter(id => !isNaN(id));
-
-if (AUTHORIZED_IDS.length === 0) {
-  console.warn("⚠️ WARNING: No TELEGRAM_AUTHORIZED_IDS found in .env. Bot will block all messages.");
-}
+const AUTHORIZED_IDS = authorizedIds;
+const projectRoot = path.join(__dirname, '../..');
 
 console.log("🚀 Tejas Telegram Control: HARDENED VERSION STARTING...");
+console.log(`🔑 Loaded Token: ${token ? (token.slice(0, 5) + '...') : 'NULL'}`);
+console.log(`👥 Authorized IDs: ${AUTHORIZED_IDS.join(', ')}`);
 
 const bot = new TelegramBot(token, {
   polling: {
@@ -81,11 +84,13 @@ bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
 
+  console.log(`📩 Received message from ${chatId}: "${text || '[No Text]'}"`);
+
   if (!text) return;
 
   if (!AUTHORIZED_IDS.includes(chatId)) {
-    console.warn(`🛑 Unauthorized: ${chatId}`);
-    bot.sendMessage(chatId, "❌ Unauthorized");
+    console.warn(`🛑 Unauthorized access attempt from ID: ${chatId}`);
+    bot.sendMessage(chatId, `❌ Unauthorized. Your ID: ${chatId}`);
     return;
   }
 

@@ -28,7 +28,9 @@ class TejasB {
     });
 
     this.cache     = new WorkflowCache(
-      (memory && memory.tejasDir) || process.cwd() + '/.tejas'
+      (memory && memory.tejasDir) || process.cwd() + '/.tejas',
+      memory.db,
+      memory.embeddings
     );
     this.corrector = new SelfCorrector(aiEngine);
     this._stats    = {
