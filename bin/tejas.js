@@ -20,12 +20,13 @@ const graphCommand     = require('../src/commands/graph');
 const dashboardCommand = require('../src/commands/dashboard');
 const voiceCommand     = require('../src/commands/voice');
 const brainCommand     = require('../src/commands/brain');
+const updateCommand    = require('../src/commands/update');
 
 // ─── BANNER ───────────────────────────────────────────────────────────────────
 function showBanner() {
   const banner = figlet.textSync('TEJAS', { font: 'Block' });
   console.log(gradient.pastel.multiline(banner));
-  console.log(chalk.gray('  Tejas — AI + Robotics Operating System  ') + chalk.bold.magenta('v2.0.0'));
+  console.log(chalk.gray('  Tejas — AI + Robotics Operating System  ') + chalk.bold.magenta('v2.1.0'));
   console.log();
 }
 
@@ -33,12 +34,18 @@ function showBanner() {
 program
   .name('tejas')
   .description('Tejas — AI + Robotics Operating System')
-  .version('2.0.0')
+  .version('2.1.0')
   .hook('preAction', (thisCommand, actionCommand) => {
     if (!['init', 'config'].includes(actionCommand.name())) {
       showBanner();
     }
   });
+
+// tejas update
+program
+  .command('update')
+  .description('Update Tejas to the latest version from GitHub')
+  .action(updateCommand);
 
 // tejas init
 program
