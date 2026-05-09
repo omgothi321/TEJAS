@@ -21,12 +21,28 @@ const dashboardCommand = require('../src/commands/dashboard');
 const voiceCommand     = require('../src/commands/voice');
 const brainCommand     = require('../src/commands/brain');
 const updateCommand    = require('../src/commands/update');
+const { exec } = require('child_process');
+
+const VERSION = '2.1.0';
+
+// ─── UPDATE CHECK ─────────────────────────────────────────────────────────────
+async function checkForUpdates() {
+  // Simple check against origin/main without blocking startup
+  exec('git fetch origin main && git rev-parse HEAD && git rev-parse origin/main', (err, stdout) => {
+    if (err) return;
+    const [local, remote] = stdout.trim().split('\n');
+    if (local && remote && local !== remote) {
+      console.log(chalk.yellow(`\n  [UPDATE] A newer version of Tejas is available.`));
+      console.log(chalk.gray(`  Run `) + chalk.cyan('tejas update') + chalk.gray(' to upgrade to the latest God Level features.\n'));
+    }
+  });
+}
 
 // ─── BANNER ───────────────────────────────────────────────────────────────────
 function showBanner() {
   const banner = figlet.textSync('TEJAS', { font: 'Block' });
   console.log(gradient.pastel.multiline(banner));
-  console.log(chalk.gray('  Tejas — AI + Robotics Operating System  ') + chalk.bold.magenta('v2.1.0'));
+  console.log(chalk.gray('  Tejas — AI + Robotics Operating System  ') + chalk.bold.magenta(`v${VERSION}`));
   console.log();
 }
 
@@ -34,10 +50,11 @@ function showBanner() {
 program
   .name('tejas')
   .description('Tejas — AI + Robotics Operating System')
-  .version('2.1.0')
+  .version(VERSION)
   .hook('preAction', (thisCommand, actionCommand) => {
     if (!['init', 'config'].includes(actionCommand.name())) {
       showBanner();
+      checkForUpdates();
     }
   });
 
