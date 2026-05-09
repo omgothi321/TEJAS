@@ -45,11 +45,17 @@ class WorkflowCache {
     try { queryVec = await this.embeddings.embed(task); } catch (err) {}
     if (!queryVec) return { hit: false };
 
-    const cached = this.db.db.prepare("SELECT * FROM cache").all();
+    // Pre-filter: only cache entries with embeddings, ordered by recency
+    // Limit cosine scan to top 100 candidates
+    const cached = this.db.db.prepare(`
+      SELECT * FROM cache 
+      WHERE embedding IS NOT NULL 
+      ORDER BY created_at DESC LIMIT 100
+    `).all();
+
     let best = { hit: false, score: -1 };
 
     for (const entry of cached) {
-      if (!entry.embedding) continue;
       const entryVec = new Float32Array(entry.embedding.buffer, entry.embedding.byteOffset, entry.embedding.byteLength / 4);
       const score = EmbeddingService.cosineSimilarity(queryVec, entryVec);
       

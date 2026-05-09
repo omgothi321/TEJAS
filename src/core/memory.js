@@ -106,8 +106,15 @@ class MemoryManager {
 
     // 1. Initialize DB & Embeddings
     await this.db.initialize();
-    // Embeddings init is lazy/on-demand in its class, but we can warm it up
-    // await this.embeddings.initialize();
+    
+    // ── Warmup semantic engine (Issue #7) ──
+    console.log('[Tejas] Warming up semantic engine (first run only)...');
+    try {
+      await this.embeddings.initialize();
+      console.log('[Tejas] Semantic engine ready.');
+    } catch (e) {
+      console.warn('[Tejas] Semantic engine unavailable — falling back to keyword search');
+    }
 
     // 2. Migration or Initial Load
     const hasDb = await this._hasDataInDb();
@@ -204,9 +211,12 @@ class MemoryManager {
 
   // ── WRITE CONFIG ──────────────────────────────────────────────────────────
   async writeConfig(updates = {}) {
-    const current = (await this.db.db.prepare("SELECT count(*) as count FROM settings WHERE key = 'config'").get().count > 0)
-      ? await this.readConfig()
-      : DEFAULT_CONFIG;
+    let current;
+    try {
+      current = await this.readConfig();
+    } catch (e) {
+      current = DEFAULT_CONFIG;
+    }
     
     const updated = updates.model ? updates : this._deepMerge(current, updates);
     
@@ -215,6 +225,23 @@ class MemoryManager {
     
     this._config = updated;
     return updated;
+  }
+
+  // ── CLEAR MEMORY ──────────────────────────────────────────────────────────
+  async clear() {
+    const config = await this.readConfig();
+    
+    // Clear SQLite tables
+    this.db.db.prepare('DELETE FROM tasks').run();
+    this.db.db.prepare('DELETE FROM graph_nodes').run();
+    this.db.db.prepare('DELETE FROM graph_edges').run();
+    this.db.db.prepare('DELETE FROM cache').run();
+    this.db.db.prepare("DELETE FROM settings WHERE key = 'memory'").run();
+    
+    await fs.remove(this.logsDir);
+    this._memory = null;
+    await this.initialize({ name: this._memory?.project?.name });
+    await this.writeConfig(config);
   }
 
   // ── ADD WORKFLOW ──────────────────────────────────────────────────────────
@@ -305,66 +332,66 @@ class MemoryManager {
 
   // ── SEARCH MEMORY ─────────────────────────────────────────────────────────
   async search(query) {
-    const mem = await this.read();
-    const q = query.toLowerCase();
+    if (!query) return [];
     const results = [];
 
-    // Search workflows
-    mem.knowledge.workflows.forEach(w => {
-      if (
-        (w.name && w.name.toLowerCase().includes(q)) ||
-        (w.description && w.description.toLowerCase().includes(q)) ||
-        (w.trigger && w.trigger.toLowerCase().includes(q))
-      ) {
-        results.push({ type: 'workflow', ...w });
-      }
-    });
+    // 1. FTS5 search on tasks
+    try {
+      const ftsTasks = this.db.db.prepare(`
+        SELECT id, task, agent, success FROM tasks 
+        WHERE task MATCH ? LIMIT 10
+      `).all(query);
+      ftsTasks.forEach(r => results.push({ type: 'task', ...r }));
+    } catch (err) {}
 
-    // Search patterns
-    mem.knowledge.patterns.forEach(p => {
-      if (
-        (p.name && p.name.toLowerCase().includes(q)) ||
-        (p.value && p.value.toLowerCase().includes(q))
-      ) {
-        results.push({ type: 'pattern', ...p });
-      }
-    });
+    // 2. FTS5 search on graph nodes
+    try {
+      const ftsNodes = this.db.db.prepare(`
+        SELECT id, type, label FROM graph_nodes 
+        WHERE label MATCH ? LIMIT 10
+      `).all(query);
+      ftsNodes.forEach(r => results.push({ type: r.type, ...r }));
+    } catch (err) {}
 
-    // Search history
-    mem.agents.history.forEach(h => {
-      if (h.task && h.task.toLowerCase().includes(q)) {
-        results.push({ type: 'history', ...h });
+    // 3. Semantic search via graph.recall
+    const semantic = await this.graph.recall(query, 5);
+    semantic.forEach(r => {
+      if (r.relevance > 0.6) {
+        results.push({ type: 'semantic', label: r.node.label, relevance: r.relevance });
       }
     });
 
     return results;
   }
 
-  // ── CLEAR ─────────────────────────────────────────────────────────────────
+  // ── CLEAR MEMORY ──────────────────────────────────────────────────────────
   async clear() {
     const config = await this.readConfig();
-    await fs.remove(this.memFile);
+    
+    // Clear SQLite tables
+    this.db.db.prepare('DELETE FROM tasks').run();
+    this.db.db.prepare('DELETE FROM graph_nodes').run();
+    this.db.db.prepare('DELETE FROM graph_edges').run();
+    this.db.db.prepare('DELETE FROM cache').run();
+    this.db.db.prepare("DELETE FROM settings WHERE key = 'memory'").run();
+    
     await fs.remove(this.logsDir);
+    this._memory = null;
     await this.initialize({ name: this._memory?.project?.name });
     await this.writeConfig(config);
   }
 
-  // ── EXPORT ────────────────────────────────────────────────────────────────
-  async export(filePath) {
+  // ── EXPORT MEMORY ─────────────────────────────────────────────────────────
+  async export(destPath) {
     const mem = await this.read();
-    const tmpFile = filePath + '.tmp';
-    await fs.writeJson(tmpFile, mem, { spaces: 2 });
-    await fs.rename(tmpFile, filePath);
-    return filePath;
+    await fs.writeJson(destPath, mem, { spaces: 2 });
+    return destPath;
   }
 
-  // ── IMPORT ────────────────────────────────────────────────────────────────
+  // ── IMPORT MEMORY ─────────────────────────────────────────────────────────
   async import(filePath) {
     const imported = await fs.readJson(filePath);
-    const tmpFile = this.memFile + '.tmp';
-    await fs.writeJson(tmpFile, imported, { spaces: 2 });
-    await fs.rename(tmpFile, this.memFile);
-    this._memory = imported;
+    await this.write(imported);
     return imported;
   }
 

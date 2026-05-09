@@ -171,7 +171,14 @@ class KnowledgeGraph {
     let queryVec = null;
     try { queryVec = await this.embeddings.embed(query); } catch (err) {}
 
-    const nodes = this.db.db.prepare("SELECT * FROM graph_nodes").all();
+    // Pre-filter: only nodes with embeddings, ordered by use_count descending
+    // Limit cosine scan to top 200 candidates
+    const nodes = this.db.db.prepare(`
+      SELECT * FROM graph_nodes 
+      WHERE embedding IS NOT NULL 
+      ORDER BY use_count DESC LIMIT 200
+    `).all();
+
     const scored = nodes.map(node => {
       let score = 0;
       if (queryVec && node.embedding) {
@@ -203,6 +210,48 @@ class KnowledgeGraph {
       });
     }
     return context;
+  }
+
+  async findPatterns() {
+    const rows = this.db.db.prepare(`
+      SELECT agent, count(*) as count, avg(duration_ms) as avg_ms,
+             sum(success) as successes
+      FROM tasks GROUP BY agent ORDER BY count DESC LIMIT 10
+    `).all();
+    return rows.map(r => ({
+      type:       'agent_usage',
+      label:      r.agent || 'unknown',
+      count:      r.count,
+      suggestion: `Agent '${r.agent}' used ${r.count} times, ${Math.round((r.successes/r.count)*100)}% success rate`
+    }));
+  }
+
+  async getStats() {
+    const nodes = this.db.db.prepare('SELECT count(*) as count FROM graph_nodes').get();
+    const edges = this.db.db.prepare('SELECT count(*) as count FROM graph_edges').get();
+    const tasks = this.db.db.prepare('SELECT count(*) as count FROM tasks').get();
+    return { nodes: nodes.count, edges: edges.count, tasks: tasks.count };
+  }
+
+  async search(query) {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    const rows = this.db.db.prepare(`
+      SELECT * FROM graph_nodes
+      WHERE lower(label) LIKE ? LIMIT 20
+    `).all(`%${q}%`);
+    return rows.map(r => ({
+      type:            r.type,
+      label:           r.label,
+      relevance_score: r.use_count / 10,
+      id:              r.id
+    }));
+  }
+
+  async visualize(nodeId = null) {
+    const nodes = this.db.db.prepare('SELECT id, type, label, use_count FROM graph_nodes LIMIT 100').all();
+    const edges = this.db.db.prepare('SELECT src, dst, type, weight FROM graph_edges LIMIT 200').all();
+    return { nodes, edges };
   }
 
   _getLastTaskNode() {

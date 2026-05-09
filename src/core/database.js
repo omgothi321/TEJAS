@@ -89,6 +89,37 @@ class TejasDatabase {
     this.db.prepare(`
       CREATE VIRTUAL TABLE IF NOT EXISTS nodes_fts USING fts5(label, content='graph_nodes', content_rowid='id')
     `).run();
+
+    // ── FTS5 TRIGGERS ───────────────────────────────────────────────────────
+    this.db.prepare(`
+      CREATE TRIGGER IF NOT EXISTS tasks_ai AFTER INSERT ON tasks BEGIN
+        INSERT INTO tasks_fts(rowid, task) VALUES (new.id, new.task);
+      END
+    `).run();
+
+    this.db.prepare(`
+      CREATE TRIGGER IF NOT EXISTS tasks_ad AFTER DELETE ON tasks BEGIN
+        INSERT INTO tasks_fts(tasks_fts, rowid, task) VALUES ('delete', old.id, old.task);
+      END
+    `).run();
+
+    this.db.prepare(`
+      CREATE TRIGGER IF NOT EXISTS nodes_ai AFTER INSERT ON graph_nodes BEGIN
+        INSERT INTO nodes_fts(rowid, label) VALUES (new.id, new.label);
+      END
+    `).run();
+
+    this.db.prepare(`
+      CREATE TRIGGER IF NOT EXISTS nodes_ad AFTER DELETE ON graph_nodes BEGIN
+        INSERT INTO nodes_fts(nodes_fts, rowid, label) VALUES ('delete', old.id, old.label);
+      END
+    `).run();
+
+    // ── INDEXES ─────────────────────────────────────────────────────────────
+    this.db.prepare('CREATE INDEX IF NOT EXISTS idx_tasks_agent ON tasks(agent)').run();
+    this.db.prepare('CREATE INDEX IF NOT EXISTS idx_tasks_created ON tasks(created_at DESC)').run();
+    this.db.prepare('CREATE INDEX IF NOT EXISTS idx_nodes_type ON graph_nodes(type)').run();
+    this.db.prepare('CREATE INDEX IF NOT EXISTS idx_nodes_use_count ON graph_nodes(use_count DESC)').run();
   }
 
   // Helper to run cosine similarity if needed, though usually better in JS for small sets
