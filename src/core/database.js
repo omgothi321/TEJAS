@@ -83,35 +83,35 @@ class TejasDatabase {
 
     // Full-Text Search for tasks and nodes
     this.db.prepare(`
-      CREATE VIRTUAL TABLE IF NOT EXISTS tasks_fts USING fts5(task, content='tasks', content_rowid='id')
+      CREATE VIRTUAL TABLE IF NOT EXISTS tasks_fts USING fts5(task, content='tasks')
     `).run();
 
     this.db.prepare(`
-      CREATE VIRTUAL TABLE IF NOT EXISTS nodes_fts USING fts5(label, content='graph_nodes', content_rowid='id')
+      CREATE VIRTUAL TABLE IF NOT EXISTS nodes_fts USING fts5(label, content='graph_nodes')
     `).run();
 
     // ── FTS5 TRIGGERS ───────────────────────────────────────────────────────
     this.db.prepare(`
       CREATE TRIGGER IF NOT EXISTS tasks_ai AFTER INSERT ON tasks BEGIN
-        INSERT INTO tasks_fts(rowid, task) VALUES (new.id, new.task);
+        INSERT INTO tasks_fts(rowid, task) VALUES (new.rowid, new.task);
       END
     `).run();
 
     this.db.prepare(`
       CREATE TRIGGER IF NOT EXISTS tasks_ad AFTER DELETE ON tasks BEGIN
-        INSERT INTO tasks_fts(tasks_fts, rowid, task) VALUES ('delete', old.id, old.task);
+        INSERT INTO tasks_fts(tasks_fts, rowid, task) VALUES ('delete', old.rowid, old.task);
       END
     `).run();
 
     this.db.prepare(`
       CREATE TRIGGER IF NOT EXISTS nodes_ai AFTER INSERT ON graph_nodes BEGIN
-        INSERT INTO nodes_fts(rowid, label) VALUES (new.id, new.label);
+        INSERT INTO nodes_fts(rowid, label) VALUES (new.rowid, new.label);
       END
     `).run();
 
     this.db.prepare(`
       CREATE TRIGGER IF NOT EXISTS nodes_ad AFTER DELETE ON graph_nodes BEGIN
-        INSERT INTO nodes_fts(nodes_fts, rowid, label) VALUES ('delete', old.id, old.label);
+        INSERT INTO nodes_fts(nodes_fts, rowid, label) VALUES ('delete', old.rowid, old.label);
       END
     `).run();
 

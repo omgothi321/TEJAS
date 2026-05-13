@@ -20,14 +20,16 @@ module.exports = async function brain(options) {
   const memory = new MemoryManager(process.cwd());
 
   if (!await memory.exists()) {
-    display.error('Tejas not initialized. Run: tejas init');
+    display.error('Tejas not initialized here. Run: tejas init');
     process.exit(1);
   }
+
+  await memory.initialize();
 
   const config = await memory.readConfig();
   const ai     = new AIEngine(config);
   const b      = new TejasB(ai, memory, config);
-  const cache  = new WorkflowCache(path.join(process.cwd(), '.tejas'));
+  const cache  = new WorkflowCache(path.join(process.cwd(), '.tejas'), memory.db, memory.embeddings);
 
   // ── STATS ──────────────────────────────────────────────────────────────
   if (options.stats || (!options.cache && !options.flush && !options.models && !options.test)) {
@@ -45,7 +47,7 @@ module.exports = async function brain(options) {
     console.log(chalk.bold.cyan('  ◈ Workflow Cache'));
     console.log(chalk.gray(`    Cached workflows:  `) + chalk.white(cStats.cached_workflows));
     console.log(chalk.gray(`    Total cache hits:  `) + chalk.white(cStats.total_hits));
-    console.log(chalk.gray(`    Cache hit rate:    `) + chalk.green(cStats.hit_rate));
+    console.log(chalk.gray(`    Cache hit rate:    `) + chalk.green(cStats.hit_rate || '0%'));
     if (cStats.most_used) {
       console.log(chalk.gray(`    Most used:         `) + chalk.white(cStats.most_used));
     }
@@ -97,14 +99,13 @@ module.exports = async function brain(options) {
       return;
     }
     const table = new Table({
-      head:  [chalk.cyan('Task'), chalk.cyan('Hits'), chalk.cyan('Last Used')],
+      head:  [chalk.cyan('Task'), chalk.cyan('Created')],
       style: { head: [], border: ['gray'] }
     });
     for (const w of list) {
       table.push([
         w.task.slice(0, 50),
-        chalk.yellow(w.hits.toString()),
-        chalk.gray(w.last_used ? w.last_used.split('T')[0] : '—')
+        chalk.gray(w.created_at ? new Date(w.created_at * 1000).toISOString().split('T')[0] : '—')
       ]);
     }
     console.log(table.toString());
@@ -114,9 +115,7 @@ module.exports = async function brain(options) {
 
   // ── FLUSH CACHE ───────────────────────────────────────────────────────────
   if (options.flush) {
-    const fs   = require('fs-extra');
-    const file = path.join(process.cwd(), '.tejas', 'workflow-cache.json');
-    await fs.remove(file);
+    memory.db.db.prepare('DELETE FROM cache').run();
     display.success('Workflow cache cleared.');
     return;
   }

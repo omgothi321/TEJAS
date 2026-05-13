@@ -16,6 +16,8 @@ module.exports = async function voice(options) {
     process.exit(1);
   }
 
+  await memory.initialize();
+
   const config = await memory.readConfig();
   const ai     = new AIEngine(config);
   const router = new AgentRouter(ai, memory);

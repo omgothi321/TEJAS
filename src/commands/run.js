@@ -37,6 +37,9 @@ module.exports = async function run(task, options) {
     process.exit(1);
   }
 
+  // Initialize state & models
+  await memory.initialize();
+
   const config   = await memory.readConfig();
   const ai       = new AIEngine({ ...config, verbose: options.verbose || false });
   const router   = new AgentRouter(ai, memory);

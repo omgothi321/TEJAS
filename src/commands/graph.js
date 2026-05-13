@@ -13,6 +13,8 @@ module.exports = async function graph(options) {
     process.exit(1);
   }
 
+  await memory.initialize();
+
   // ── STATS ──────────────────────────────────────────────────────────────────
   if (options.stats || (!options.search && !options.visualize && !options.patterns && !options.recall)) {
     const spin = display.spinner('Reading knowledge graph...').start();

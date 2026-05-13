@@ -1,0 +1,3441 @@
+{
+  "version": "0.2.0",
+  "created_at": "2026-03-15T15:55:25.124Z",
+  "updated_at": "2026-04-22T16:25:40.224Z",
+  "nodes": {
+    "e3e482b0-67bc-4b95-89bb-d569c822b34f": {
+      "id": "e3e482b0-67bc-4b95-89bb-d569c822b34f",
+      "type": "task",
+      "label": "Hi",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 2,
+      "created_at": "2026-03-24T09:48:54.164Z",
+      "last_seen": "2026-03-24T09:49:57.663Z",
+      "relevance": 1
+    },
+    "054f7d2c-1f3e-4707-b07a-4c0f7720ee3c": {
+      "id": "054f7d2c-1f3e-4707-b07a-4c0f7720ee3c",
+      "type": "task",
+      "label": "Ls",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 27
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:50:19.651Z",
+      "last_seen": "2026-03-24T09:50:19.651Z",
+      "relevance": 1
+    },
+    "df2ff17b-2991-4706-9d2b-f54f1477c9de": {
+      "id": "df2ff17b-2991-4706-9d2b-f54f1477c9de",
+      "type": "command",
+      "label": "ls",
+      "data": {
+        "description": "List the files and directories in the current directory"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 3,
+      "created_at": "2026-03-24T09:50:19.655Z",
+      "last_seen": "2026-03-27T07:46:25.608Z",
+      "relevance": 1
+    },
+    "8e5a9ac3-646a-4b14-b329-3501a6a070df": {
+      "id": "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+      "type": "task",
+      "label": "List files",
+      "data": {
+        "agent": "file",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [
+        "file"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:50:30.871Z",
+      "last_seen": "2026-03-24T09:50:30.871Z",
+      "relevance": 1
+    },
+    "4d709048-489f-4c85-9d7b-a662dfaa92e4": {
+      "id": "4d709048-489f-4c85-9d7b-a662dfaa92e4",
+      "type": "task",
+      "label": "99*99",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 13
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:51:10.484Z",
+      "last_seen": "2026-03-24T09:51:10.484Z",
+      "relevance": 1
+    },
+    "a1ae2dcb-ada3-45c5-9b00-28db3c993046": {
+      "id": "a1ae2dcb-ada3-45c5-9b00-28db3c993046",
+      "type": "command",
+      "label": "echo $((99 * 99))",
+      "data": {
+        "description": "calculate 99*99 using shell command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:51:10.487Z",
+      "last_seen": "2026-03-24T09:51:10.487Z",
+      "relevance": 1
+    },
+    "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22": {
+      "id": "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+      "type": "task",
+      "label": "Tejas dashboard",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 12
+      },
+      "tags": [],
+      "use_count": 2,
+      "created_at": "2026-03-24T09:53:08.625Z",
+      "last_seen": "2026-03-24T09:54:12.418Z",
+      "relevance": 1
+    },
+    "e888a1cb-d58c-4f6a-9331-ab811153898c": {
+      "id": "e888a1cb-d58c-4f6a-9331-ab811153898c",
+      "type": "command",
+      "label": "echo 'Tejas Dashboard'",
+      "data": {
+        "description": "Display the Tejas dashboard"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 2,
+      "created_at": "2026-03-24T09:53:08.630Z",
+      "last_seen": "2026-03-24T09:54:12.419Z",
+      "relevance": 1
+    },
+    "bee807c4-452a-46c8-bd41-8c908a585505": {
+      "id": "bee807c4-452a-46c8-bd41-8c908a585505",
+      "type": "task",
+      "label": "Close firefox",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 41
+      },
+      "tags": [],
+      "use_count": 3,
+      "created_at": "2026-03-24T09:54:43.587Z",
+      "last_seen": "2026-03-27T06:50:11.026Z",
+      "relevance": 1
+    },
+    "ff4d8530-842b-4f00-b023-aaa12bfdc25f": {
+      "id": "ff4d8530-842b-4f00-b023-aaa12bfdc25f",
+      "type": "command",
+      "label": "pkill firefox",
+      "data": {
+        "description": "Close Firefox using the pkill command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 3,
+      "created_at": "2026-03-24T09:54:43.590Z",
+      "last_seen": "2026-03-27T06:50:11.037Z",
+      "relevance": 1
+    },
+    "c79a581d-08ae-496d-8b14-045f10cea9ed": {
+      "id": "c79a581d-08ae-496d-8b14-045f10cea9ed",
+      "type": "task",
+      "label": "Restart virtual box",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 28
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:55:11.482Z",
+      "last_seen": "2026-03-24T09:55:11.482Z",
+      "relevance": 1
+    },
+    "ff2f5d0a-0391-4fd9-9646-c50f3da373f4": {
+      "id": "ff2f5d0a-0391-4fd9-9646-c50f3da373f4",
+      "type": "command",
+      "label": "pkill VirtualBox",
+      "data": {
+        "description": "Stop the Virtual Box application"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:55:11.483Z",
+      "last_seen": "2026-03-24T09:55:11.483Z",
+      "relevance": 1
+    },
+    "eb26f7fc-6d60-4397-b37d-055296890c46": {
+      "id": "eb26f7fc-6d60-4397-b37d-055296890c46",
+      "type": "command",
+      "label": "VirtualBox &",
+      "data": {
+        "description": "Start the Virtual Box application"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:55:11.487Z",
+      "last_seen": "2026-03-24T09:55:11.487Z",
+      "relevance": 1
+    },
+    "5b546376-d466-4eef-a307-71ab6bbecf89": {
+      "id": "5b546376-d466-4eef-a307-71ab6bbecf89",
+      "type": "error",
+      "label": "Command failed: pkill VirtualBox\n",
+      "data": {
+        "task": "Restart virtual box",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:55:11.491Z",
+      "last_seen": "2026-03-24T09:55:11.491Z",
+      "relevance": 1
+    },
+    "6836de8d-5bac-488e-be09-5443e02fd0d6": {
+      "id": "6836de8d-5bac-488e-be09-5443e02fd0d6",
+      "type": "task",
+      "label": "Tejas status",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 15
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:56:01.521Z",
+      "last_seen": "2026-03-24T09:56:01.521Z",
+      "relevance": 1
+    },
+    "261bedc8-3716-4b3b-8f7c-fb54005b3796": {
+      "id": "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+      "type": "command",
+      "label": "echo 'Tejas is online and ready'",
+      "data": {
+        "description": "Print Tejas status"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-24T09:56:01.525Z",
+      "last_seen": "2026-03-24T09:56:01.525Z",
+      "relevance": 1
+    },
+    "550f0d07-e058-4a90-99fb-d9416314c20e": {
+      "id": "550f0d07-e058-4a90-99fb-d9416314c20e",
+      "type": "task",
+      "label": "Check all files of tejas",
+      "data": {
+        "agent": "file",
+        "success": false,
+        "duration_ms": 1
+      },
+      "tags": [
+        "file"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:01.700Z",
+      "last_seen": "2026-03-27T06:49:01.700Z",
+      "relevance": 1
+    },
+    "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad": {
+      "id": "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+      "type": "error",
+      "label": "File not found: /Tejas",
+      "data": {
+        "task": "Check all files of tejas",
+        "agent": "file"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:01.702Z",
+      "last_seen": "2026-03-27T06:49:01.702Z",
+      "relevance": 1
+    },
+    "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1": {
+      "id": "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+      "type": "task",
+      "label": "Open firefox",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 465
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:27.910Z",
+      "last_seen": "2026-03-27T06:49:27.910Z",
+      "relevance": 1
+    },
+    "7cfa72ca-dcf6-4933-84fc-021193e9d0b1": {
+      "id": "7cfa72ca-dcf6-4933-84fc-021193e9d0b1",
+      "type": "command",
+      "label": "firefox",
+      "data": {
+        "description": "Open Firefox using the shell command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:27.918Z",
+      "last_seen": "2026-03-27T06:49:27.918Z",
+      "relevance": 1
+    },
+    "ace7f151-d4df-4242-a5d0-0ea2c3754d1c": {
+      "id": "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+      "type": "task",
+      "label": "Close new firefox and keep old firefox",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 48
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:53.671Z",
+      "last_seen": "2026-03-27T06:49:53.671Z",
+      "relevance": 1
+    },
+    "d3927f7b-77ae-4e2d-8a6e-872781663efd": {
+      "id": "d3927f7b-77ae-4e2d-8a6e-872781663efd",
+      "type": "command",
+      "label": "pgrep firefox",
+      "data": {
+        "description": "Identify the process IDs of all running firefox instances"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:53.675Z",
+      "last_seen": "2026-03-27T06:49:53.675Z",
+      "relevance": 1
+    },
+    "5654efc4-dbf5-41cd-a92a-737f433fc0bc": {
+      "id": "5654efc4-dbf5-41cd-a92a-737f433fc0bc",
+      "type": "command",
+      "label": "pkill -P {pid}",
+      "data": {
+        "description": "Close the selected firefox instance"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:53.680Z",
+      "last_seen": "2026-03-27T06:49:53.680Z",
+      "relevance": 1
+    },
+    "07d88db4-e334-4c51-baf8-16e1d50e7e51": {
+      "id": "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+      "type": "error",
+      "label": "Command failed: pkill -P {pid}\npkill: not a number: {pid}\n",
+      "data": {
+        "task": "Close new firefox and keep old firefox",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:49:53.683Z",
+      "last_seen": "2026-03-27T06:49:53.683Z",
+      "relevance": 1
+    },
+    "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7": {
+      "id": "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+      "type": "task",
+      "label": "Open terminal and run tejas",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 14
+      },
+      "tags": [],
+      "use_count": 2,
+      "created_at": "2026-03-27T06:50:35.412Z",
+      "last_seen": "2026-03-27T06:51:01.472Z",
+      "relevance": 1
+    },
+    "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca": {
+      "id": "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca",
+      "type": "command",
+      "label": "gnome-terminal",
+      "data": {
+        "description": "Open a terminal"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 2,
+      "created_at": "2026-03-27T06:50:35.414Z",
+      "last_seen": "2026-03-27T06:51:01.474Z",
+      "relevance": 1
+    },
+    "5b7de709-119c-4ab2-bc4f-b247fc08d2c2": {
+      "id": "5b7de709-119c-4ab2-bc4f-b247fc08d2c2",
+      "type": "command",
+      "label": "tejas",
+      "data": {
+        "description": "Run the tejas command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 3,
+      "created_at": "2026-03-27T06:50:35.419Z",
+      "last_seen": "2026-03-27T06:51:16.871Z",
+      "relevance": 1
+    },
+    "40f8d467-b933-479c-a73e-b4a3e1ae15d7": {
+      "id": "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+      "type": "error",
+      "label": "Command failed: gnome-terminal\n/bin/sh: 1: gnome-terminal: not found\n",
+      "data": {
+        "task": "Open terminal and run tejas",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 2,
+      "created_at": "2026-03-27T06:50:35.424Z",
+      "last_seen": "2026-03-27T06:51:01.493Z",
+      "relevance": 1
+    },
+    "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1": {
+      "id": "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+      "type": "task",
+      "label": "Run tejas",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 1241
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:16.866Z",
+      "last_seen": "2026-03-27T06:51:16.866Z",
+      "relevance": 1
+    },
+    "87e35938-03d2-4e11-886f-c561a9218861": {
+      "id": "87e35938-03d2-4e11-886f-c561a9218861",
+      "type": "error",
+      "label": "Command failed: tejas\nUsage: tejas [options] [command]\n\nTejas — AI + Robotics Operating System\n\nOptions:\n  -V, --version           output the version number\n  -h, --help              display help for command\n\nCommands:\n  init [options]          Initialize Tejas in current project\n  run [options] <task>    Execute a task using AI agents\n  brain [options]         Inspect the Tejas Brain Layer — cache, models,\n                          constitution\n  voice [options]         Activate Tejas voice interface\n  dashboard [options]     Launch the Tejas web dashboard\n  status                  Show Tejas system status\n  graph [options]         Inspect the knowledge graph\n  agent [options]         Manage and inspect agents\n  memory [options]        Inspect and manage memory\n  learn [options] <fact>  Teach Tejas a fact or preference\n  config [options]        Manage Tejas configuration\n  help [command]          display help for command\n",
+      "data": {
+        "task": "Run tejas",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:16.878Z",
+      "last_seen": "2026-03-27T06:51:16.878Z",
+      "relevance": 1
+    },
+    "4c4790ea-5229-4b38-bb15-38801ee672da": {
+      "id": "4c4790ea-5229-4b38-bb15-38801ee672da",
+      "type": "task",
+      "label": "Open new terminal and run tejas",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 20
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:30.909Z",
+      "last_seen": "2026-03-27T06:51:30.909Z",
+      "relevance": 1
+    },
+    "1e608611-94f9-4101-a51c-8ce8944ca691": {
+      "id": "1e608611-94f9-4101-a51c-8ce8944ca691",
+      "type": "command",
+      "label": "gnome-terminal -- /bin/sh -c \"tejas\"",
+      "data": {
+        "description": "Open a new terminal"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:30.913Z",
+      "last_seen": "2026-03-27T06:51:30.913Z",
+      "relevance": 1
+    },
+    "bcfd3e0f-fc26-4698-a844-9a22b59b09f7": {
+      "id": "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+      "type": "error",
+      "label": "Command failed: gnome-terminal -- /bin/sh -c \"tejas\"\n/bin/sh: 1: gnome-terminal: not found\n",
+      "data": {
+        "task": "Open new terminal and run tejas",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:30.921Z",
+      "last_seen": "2026-03-27T06:51:30.921Z",
+      "relevance": 1
+    },
+    "192f15bb-3014-4abb-afde-dc07e65af2fb": {
+      "id": "192f15bb-3014-4abb-afde-dc07e65af2fb",
+      "type": "task",
+      "label": "Minimize all",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 177
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:42.531Z",
+      "last_seen": "2026-03-27T06:51:42.531Z",
+      "relevance": 1
+    },
+    "9bcd8879-93bb-4345-b97c-49350bec2ee9": {
+      "id": "9bcd8879-93bb-4345-b97c-49350bec2ee9",
+      "type": "command",
+      "label": "xdotool key super+d",
+      "data": {
+        "description": "Minimize all windows"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:51:42.536Z",
+      "last_seen": "2026-03-27T06:51:42.536Z",
+      "relevance": 1
+    },
+    "096adafe-c525-4ac0-a0b2-d014599ef05d": {
+      "id": "096adafe-c525-4ac0-a0b2-d014599ef05d",
+      "type": "task",
+      "label": "Maximize terminal",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 19
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:52:08.946Z",
+      "last_seen": "2026-03-27T06:52:08.946Z",
+      "relevance": 1
+    },
+    "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9": {
+      "id": "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+      "type": "command",
+      "label": "wmctrl -r :ACTIVE: -b add,fullscreen",
+      "data": {
+        "description": "Maximize the terminal window"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:52:08.949Z",
+      "last_seen": "2026-03-27T06:52:08.949Z",
+      "relevance": 1
+    },
+    "3ad243f6-841a-4d14-8493-1b3e803ab7ba": {
+      "id": "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+      "type": "error",
+      "label": "Command failed: wmctrl -r :ACTIVE: -b add,fullscreen\n/bin/sh: 1: wmctrl: not found\n",
+      "data": {
+        "task": "Maximize terminal",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:52:08.953Z",
+      "last_seen": "2026-03-27T06:52:08.953Z",
+      "relevance": 1
+    },
+    "0febc0ba-c782-4a54-97b5-0595169f0971": {
+      "id": "0febc0ba-c782-4a54-97b5-0595169f0971",
+      "type": "task",
+      "label": "Maximize firefox",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 10
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:52:26.769Z",
+      "last_seen": "2026-03-27T06:52:26.769Z",
+      "relevance": 1
+    },
+    "61b4a929-c1a9-459a-aa42-5d7b4b05a864": {
+      "id": "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+      "type": "command",
+      "label": "wmctrl -r firefox -b add,fullscreen",
+      "data": {
+        "description": "Maximize the firefox window using the wmctrl command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:52:26.778Z",
+      "last_seen": "2026-03-27T06:52:26.778Z",
+      "relevance": 1
+    },
+    "6e29ed43-6379-47fc-a922-840f52b37060": {
+      "id": "6e29ed43-6379-47fc-a922-840f52b37060",
+      "type": "error",
+      "label": "Command failed: wmctrl -r firefox -b add,fullscreen\n/bin/sh: 1: wmctrl: not found\n",
+      "data": {
+        "task": "Maximize firefox",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:52:26.794Z",
+      "last_seen": "2026-03-27T06:52:26.794Z",
+      "relevance": 1
+    },
+    "886ce5f8-d56b-49c2-9088-5352ea6e16d3": {
+      "id": "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+      "type": "task",
+      "label": "Create html file  of traffic",
+      "data": {
+        "agent": "file",
+        "success": true,
+        "duration_ms": 1
+      },
+      "tags": [
+        "file",
+        "create"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:54:03.825Z",
+      "last_seen": "2026-03-27T06:54:03.825Z",
+      "relevance": 1
+    },
+    "7258b68f-e23e-421d-83a3-92ded8e2460c": {
+      "id": "7258b68f-e23e-421d-83a3-92ded8e2460c",
+      "type": "task",
+      "label": "Where you had created html file location",
+      "data": {
+        "agent": "file",
+        "success": false,
+        "duration_ms": 1
+      },
+      "tags": [
+        "file",
+        "create"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:54:57.393Z",
+      "last_seen": "2026-03-27T06:54:57.394Z",
+      "relevance": 1
+    },
+    "27449bf0-95de-401b-9223-fa32c2dd7832": {
+      "id": "27449bf0-95de-401b-9223-fa32c2dd7832",
+      "type": "error",
+      "label": "No file path provided",
+      "data": {
+        "task": "Where you had created html file location",
+        "agent": "file"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:54:57.396Z",
+      "last_seen": "2026-03-27T06:54:57.396Z",
+      "relevance": 1
+    },
+    "fb8a4e61-07ff-494e-9275-e16fbf2c918d": {
+      "id": "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+      "type": "task",
+      "label": "Echo speak tejas is improving with human voice",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 11
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:17.252Z",
+      "last_seen": "2026-03-27T06:56:17.252Z",
+      "relevance": 1
+    },
+    "c6e70120-85ec-4414-8ea2-f4dd2841eadf": {
+      "id": "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+      "type": "command",
+      "label": "echo 'Tejas is improving' | festival --tts",
+      "data": {
+        "description": "Use the voice interface to speak the message"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:17.255Z",
+      "last_seen": "2026-03-27T06:56:17.255Z",
+      "relevance": 1
+    },
+    "078f0d0b-79ea-4257-8b95-933a34dee9c4": {
+      "id": "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+      "type": "error",
+      "label": "Command failed: echo 'Tejas is improving' | festival --tts\n/bin/sh: 1: festival: not found\n",
+      "data": {
+        "task": "Echo speak tejas is improving with human voice",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:17.261Z",
+      "last_seen": "2026-03-27T06:56:17.261Z",
+      "relevance": 1
+    },
+    "63c4eed3-326d-435e-ac40-4fb007b2d6bb": {
+      "id": "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+      "type": "task",
+      "label": "speak tejas is improving with human voice",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 12
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:33.283Z",
+      "last_seen": "2026-03-27T06:56:33.283Z",
+      "relevance": 1
+    },
+    "e863bc85-e685-4fe1-b8ba-3323dd3044bf": {
+      "id": "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+      "type": "command",
+      "label": "echo 'Tejas is improving with human voice' | festival --tts",
+      "data": {
+        "description": "Use festival text-to-speech to speak the sentence"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:33.285Z",
+      "last_seen": "2026-03-27T06:56:33.285Z",
+      "relevance": 1
+    },
+    "158df53f-3d2e-4aed-9f79-6b16a2c5c280": {
+      "id": "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+      "type": "error",
+      "label": "Command failed: echo 'Tejas is improving with human voice' | festival --tts\n/bin/sh: 1: festival: not found\n",
+      "data": {
+        "task": "speak tejas is improving with human voice",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:33.290Z",
+      "last_seen": "2026-03-27T06:56:33.290Z",
+      "relevance": 1
+    },
+    "a71b8f24-ea96-4fe7-88a5-12e7ccfcddb4": {
+      "id": "a71b8f24-ea96-4fe7-88a5-12e7ccfcddb4",
+      "type": "task",
+      "label": "19*20",
+      "data": {
+        "agent": "code",
+        "success": true,
+        "duration_ms": 27
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:53.454Z",
+      "last_seen": "2026-03-27T06:56:53.454Z",
+      "relevance": 1
+    },
+    "c0635d1e-f0a8-4ebb-98f3-953b6264d785": {
+      "id": "c0635d1e-f0a8-4ebb-98f3-953b6264d785",
+      "type": "command",
+      "label": "echo $((19 * 20))",
+      "data": {
+        "description": "Calculate the product of 19 and 20"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T06:56:53.458Z",
+      "last_seen": "2026-03-27T06:56:53.458Z",
+      "relevance": 1
+    },
+    "9bd0a966-aef3-442e-9fa3-cea3ba06d821": {
+      "id": "9bd0a966-aef3-442e-9fa3-cea3ba06d821",
+      "type": "task",
+      "label": "1+1",
+      "data": {
+        "agent": "code",
+        "success": true,
+        "duration_ms": 12
+      },
+      "tags": [],
+      "use_count": 2,
+      "created_at": "2026-03-27T07:20:44.786Z",
+      "last_seen": "2026-03-27T07:45:45.711Z",
+      "relevance": 1
+    },
+    "aeef19ba-9afc-4dae-b12f-2d3336bb01c1": {
+      "id": "aeef19ba-9afc-4dae-b12f-2d3336bb01c1",
+      "type": "command",
+      "label": "echo $((1 + 1))",
+      "data": {
+        "description": "Calculate the sum of 1+1 using shell command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 2,
+      "created_at": "2026-03-27T07:20:44.789Z",
+      "last_seen": "2026-03-27T07:45:45.717Z",
+      "relevance": 1
+    },
+    "df7dd630-251c-414c-a43e-65e8f2b643bd": {
+      "id": "df7dd630-251c-414c-a43e-65e8f2b643bd",
+      "type": "task",
+      "label": "Listfiles",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 18
+      },
+      "tags": [
+        "file"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:45:54.338Z",
+      "last_seen": "2026-03-27T07:45:54.338Z",
+      "relevance": 1
+    },
+    "a5427be7-e29e-4371-8903-f286423f2035": {
+      "id": "a5427be7-e29e-4371-8903-f286423f2035",
+      "type": "task",
+      "label": "List fils",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 16
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:46:25.606Z",
+      "last_seen": "2026-03-27T07:46:25.606Z",
+      "relevance": 1
+    },
+    "6bd9b6f3-2f71-46c4-a625-085652ce139e": {
+      "id": "6bd9b6f3-2f71-46c4-a625-085652ce139e",
+      "type": "task",
+      "label": "Pws",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:47:27.487Z",
+      "last_seen": "2026-03-27T07:47:27.487Z",
+      "relevance": 1
+    },
+    "7802f46e-a020-4b96-a468-8923f319bede": {
+      "id": "7802f46e-a020-4b96-a468-8923f319bede",
+      "type": "task",
+      "label": "Pwd",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 12
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:47:42.142Z",
+      "last_seen": "2026-03-27T07:47:42.142Z",
+      "relevance": 1
+    },
+    "37586a63-7e7b-4a27-b53a-d3f982689bdc": {
+      "id": "37586a63-7e7b-4a27-b53a-d3f982689bdc",
+      "type": "command",
+      "label": "pwd",
+      "data": {
+        "description": "Print the current working directory"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:47:42.145Z",
+      "last_seen": "2026-03-27T07:47:42.146Z",
+      "relevance": 1
+    },
+    "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81": {
+      "id": "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+      "type": "task",
+      "label": "Sudo mkdir teletest",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 22122
+      },
+      "tags": [
+        "test"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:49:24.476Z",
+      "last_seen": "2026-03-27T07:49:24.476Z",
+      "relevance": 1
+    },
+    "a13560fa-b615-48dc-b51e-6e6a45c40422": {
+      "id": "a13560fa-b615-48dc-b51e-6e6a45c40422",
+      "type": "command",
+      "label": "sudo mkdir teletest",
+      "data": {
+        "description": "Create a new directory named teletest using sudo mkdir command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-03-27T07:49:24.481Z",
+      "last_seen": "2026-03-27T07:49:24.481Z",
+      "relevance": 1
+    },
+    "62a7131c-e7d9-49cb-8df5-8a11ef6702dd": {
+      "id": "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+      "type": "task",
+      "label": "search for the latest news on AI robotics",
+      "data": {
+        "agent": "web",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [
+        "test"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-03T14:12:42.035Z",
+      "last_seen": "2026-04-03T14:12:42.035Z",
+      "relevance": 1
+    },
+    "94b7ccc8-e5b1-40d2-a515-d228fbc73ede": {
+      "id": "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+      "type": "task",
+      "label": "perform a complex search for the evolution of LLMs from 2020 to 2026, including key architectural shifts and the impact of mixture of experts",
+      "data": {
+        "agent": "web",
+        "success": false,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 2,
+      "created_at": "2026-04-03T14:12:58.134Z",
+      "last_seen": "2026-04-03T14:16:55.339Z",
+      "relevance": 1
+    },
+    "6ef8d58c-7554-4a18-bbc1-838f2cd63082": {
+      "id": "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+      "type": "error",
+      "label": "HTTP 429 from https://arxiv.org/search/?query=large+language+models&searchtype=all&source=arxiv",
+      "data": {
+        "task": "perform a complex search for the evolution of LLMs from 2020 to 2026, including key architectural shifts and the impact of mixture of experts",
+        "agent": "web"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-03T14:12:58.139Z",
+      "last_seen": "2026-04-03T14:12:58.139Z",
+      "relevance": 1
+    },
+    "eec44e52-39b6-4edc-8bd1-d3ac990156ab": {
+      "id": "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+      "type": "task",
+      "label": "make a bill for 2 pens",
+      "data": {
+        "agent": "code",
+        "success": false,
+        "duration_ms": 12
+      },
+      "tags": [],
+      "use_count": 3,
+      "created_at": "2026-04-03T15:33:21.967Z",
+      "last_seen": "2026-04-03T15:36:44.596Z",
+      "relevance": 1
+    },
+    "15fa7009-65e6-4399-9467-8d9cc1799bf8": {
+      "id": "15fa7009-65e6-4399-9467-8d9cc1799bf8",
+      "type": "command",
+      "label": "echo $((2 * 1.0))",
+      "data": {
+        "description": "Calculate total cost of 2 pens"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 2,
+      "created_at": "2026-04-03T15:33:21.970Z",
+      "last_seen": "2026-04-03T15:34:14.285Z",
+      "relevance": 1
+    },
+    "c667c9a7-a3d3-46c2-9c37-09f850720c88": {
+      "id": "c667c9a7-a3d3-46c2-9c37-09f850720c88",
+      "type": "error",
+      "label": "Command failed: echo $((2 * 1.0))\n/bin/sh: 1: arithmetic expression: expecting EOF: \"2 * 1.0\"\n",
+      "data": {
+        "task": "make a bill for 2 pens",
+        "agent": "code"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 2,
+      "created_at": "2026-04-03T15:33:21.982Z",
+      "last_seen": "2026-04-03T15:34:14.292Z",
+      "relevance": 1
+    },
+    "5884bcd0-1574-413f-af39-57f310a8dca7": {
+      "id": "5884bcd0-1574-413f-af39-57f310a8dca7",
+      "type": "task",
+      "label": "I sold 5 laptops",
+      "data": {
+        "agent": "billing",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-04-03T15:57:22.193Z",
+      "last_seen": "2026-04-03T15:57:22.193Z",
+      "relevance": 1
+    },
+    "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed": {
+      "id": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "type": "task",
+      "label": "list all Python files in this folder and tell me which one is largest",
+      "data": {
+        "agent": "file",
+        "success": true,
+        "duration_ms": 95
+      },
+      "tags": [
+        "python",
+        "file"
+      ],
+      "use_count": 4,
+      "created_at": "2026-04-04T14:14:15.274Z",
+      "last_seen": "2026-04-04T14:17:26.553Z",
+      "relevance": 1
+    },
+    "5e160947-00f3-422f-9d3c-508292b58f41": {
+      "id": "5e160947-00f3-422f-9d3c-508292b58f41",
+      "type": "entity",
+      "label": "python",
+      "data": {},
+      "tags": [
+        "auto-extracted"
+      ],
+      "use_count": 4,
+      "created_at": "2026-04-04T14:14:15.282Z",
+      "last_seen": "2026-04-04T14:17:26.558Z",
+      "relevance": 1
+    },
+    "d68f8f45-fa49-4151-b781-60128e8f9a15": {
+      "id": "d68f8f45-fa49-4151-b781-60128e8f9a15",
+      "type": "command",
+      "label": "find . -type f -name '*.py'",
+      "data": {
+        "description": "List all Python files in the current folder"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 3,
+      "created_at": "2026-04-04T14:14:15.289Z",
+      "last_seen": "2026-04-04T14:17:08.970Z",
+      "relevance": 1
+    },
+    "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37": {
+      "id": "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+      "type": "command",
+      "label": "find . -type f -name '*.py' -exec du -h {} + | sort -rh | head -1",
+      "data": {
+        "description": "Find the largest Python file"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 3,
+      "created_at": "2026-04-04T14:14:15.296Z",
+      "last_seen": "2026-04-04T14:17:08.977Z",
+      "relevance": 1
+    },
+    "0d838c93-c57c-4fe9-a53f-ca8fa7f71a0c": {
+      "id": "0d838c93-c57c-4fe9-a53f-ca8fa7f71a0c",
+      "type": "command",
+      "label": "ls *.py",
+      "data": {
+        "description": "List all Python files in the current folder"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-04T14:17:26.565Z",
+      "last_seen": "2026-04-04T14:17:26.565Z",
+      "relevance": 1
+    },
+    "a739586c-d1dc-4c44-920c-7692bb192bc0": {
+      "id": "a739586c-d1dc-4c44-920c-7692bb192bc0",
+      "type": "command",
+      "label": "ls -l *.py | sort -k5,5nr | head -1",
+      "data": {
+        "description": "Find the largest Python file"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-04T14:17:26.571Z",
+      "last_seen": "2026-04-04T14:17:26.571Z",
+      "relevance": 1
+    },
+    "ed6af5c5-d14c-4468-aa85-30f8576ad3ed": {
+      "id": "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+      "type": "error",
+      "label": "Command failed: ls *.py\nls: cannot access '*.py': No such file or directory\n",
+      "data": {
+        "task": "list all Python files in this folder and tell me which one is largest",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-04T14:17:26.580Z",
+      "last_seen": "2026-04-04T14:17:26.580Z",
+      "relevance": 1
+    },
+    "7d962c62-bc60-4bbe-ac17-d47ae574af50": {
+      "id": "7d962c62-bc60-4bbe-ac17-d47ae574af50",
+      "type": "task",
+      "label": "Dash board",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-04-06T16:21:27.618Z",
+      "last_seen": "2026-04-06T16:21:27.618Z",
+      "relevance": 1
+    },
+    "b3544fee-3afe-43ed-9a3c-c056a56ab9c7": {
+      "id": "b3544fee-3afe-43ed-9a3c-c056a56ab9c7",
+      "type": "command",
+      "label": "tejas dashboard",
+      "data": {
+        "description": "Launch the Tejas web dashboard"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-06T16:21:27.623Z",
+      "last_seen": "2026-04-06T16:21:27.623Z",
+      "relevance": 1
+    },
+    "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10": {
+      "id": "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+      "type": "error",
+      "label": "Forbidden shell operator detected in: \"tejas dashboard\"",
+      "data": {
+        "task": "Dash board",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-06T16:21:27.632Z",
+      "last_seen": "2026-04-06T16:21:27.632Z",
+      "relevance": 1
+    },
+    "9d7202f0-3a4b-4f42-9a98-e418a6f1c23b": {
+      "id": "9d7202f0-3a4b-4f42-9a98-e418a6f1c23b",
+      "type": "task",
+      "label": "Hi bro",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-04-06T16:22:17.369Z",
+      "last_seen": "2026-04-06T16:22:17.369Z",
+      "relevance": 1
+    },
+    "c10540b8-31e4-4d7e-938a-0633d94ed987": {
+      "id": "c10540b8-31e4-4d7e-938a-0633d94ed987",
+      "type": "task",
+      "label": "scan my entire home directory for any leaked api keys, tokens, or passwords. Cross-reference then with all .env and config files, then generate a 'Security Risk Report' in a  new file called SECURITY_AUDIT.md.",
+      "data": {
+        "agent": "code",
+        "success": false,
+        "duration_ms": 0
+      },
+      "tags": [
+        "file",
+        "api"
+      ],
+      "use_count": 2,
+      "created_at": "2026-04-06T16:30:45.645Z",
+      "last_seen": "2026-04-07T04:44:22.586Z",
+      "relevance": 1
+    },
+    "08575b5e-8280-4c11-82b7-5847215a49b1": {
+      "id": "08575b5e-8280-4c11-82b7-5847215a49b1",
+      "type": "entity",
+      "label": "Security Risk Report",
+      "data": {},
+      "tags": [
+        "auto-extracted"
+      ],
+      "use_count": 2,
+      "created_at": "2026-04-06T16:30:45.657Z",
+      "last_seen": "2026-04-07T04:44:22.591Z",
+      "relevance": 1
+    },
+    "aa7a5192-68a3-4dc9-af09-1f8456094a6a": {
+      "id": "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+      "type": "error",
+      "label": "Request failed with status code 429",
+      "data": {
+        "task": "scan my entire home directory for any leaked api keys, tokens, or passwords. Cross-reference then with all .env and config files, then generate a 'Security Risk Report' in a  new file called SECURITY_AUDIT.md.",
+        "agent": "code"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 3,
+      "created_at": "2026-04-06T16:30:45.666Z",
+      "last_seen": "2026-04-07T04:45:19.016Z",
+      "relevance": 1
+    },
+    "7976c59f-f458-4e03-8ca1-a9baef298368": {
+      "id": "7976c59f-f458-4e03-8ca1-a9baef298368",
+      "type": "task",
+      "label": "analyze every .js file in the tejas folder. Find every instance of unsafe 'exec()' calls or potential memory leaks, and write a 'PATCH_PLAN.txt' explaining exactly how to fix\n  them for v3.",
+      "data": {
+        "agent": "code",
+        "success": false,
+        "duration_ms": 0
+      },
+      "tags": [
+        "file"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:45:18.993Z",
+      "last_seen": "2026-04-07T04:45:18.993Z",
+      "relevance": 1
+    },
+    "c6fd5daf-f45e-4928-b389-391717bd0103": {
+      "id": "c6fd5daf-f45e-4928-b389-391717bd0103",
+      "type": "entity",
+      "label": "exec()",
+      "data": {},
+      "tags": [
+        "auto-extracted"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:45:18.999Z",
+      "last_seen": "2026-04-07T04:45:18.999Z",
+      "relevance": 1
+    },
+    "980dbb4c-c78a-4a87-bd16-b5e45f8c7522": {
+      "id": "980dbb4c-c78a-4a87-bd16-b5e45f8c7522",
+      "type": "entity",
+      "label": "PATCH_PLAN.txt",
+      "data": {},
+      "tags": [
+        "auto-extracted"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:45:19.008Z",
+      "last_seen": "2026-04-07T04:45:19.008Z",
+      "relevance": 1
+    },
+    "83263a3b-a93f-400a-8a83-4a40923f3c32": {
+      "id": "83263a3b-a93f-400a-8a83-4a40923f3c32",
+      "type": "task",
+      "label": "search the web for how to add 'Image Generation' to a Telegram bot using the OpenAI DALL-E API. Then, create a new script called 'tejas-image.js' that implements this feature\n  using my existing credentials.",
+      "data": {
+        "agent": "web",
+        "success": false,
+        "duration_ms": 0
+      },
+      "tags": [
+        "create",
+        "api"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:46:13.984Z",
+      "last_seen": "2026-04-07T04:46:13.984Z",
+      "relevance": 1
+    },
+    "dd893f04-ae32-4eea-8627-5c5cccc21766": {
+      "id": "dd893f04-ae32-4eea-8627-5c5cccc21766",
+      "type": "entity",
+      "label": "Image Generation",
+      "data": {},
+      "tags": [
+        "auto-extracted"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:46:13.990Z",
+      "last_seen": "2026-04-07T04:46:13.990Z",
+      "relevance": 1
+    },
+    "a0800c48-a2f5-4ca5-9f27-11187db30e59": {
+      "id": "a0800c48-a2f5-4ca5-9f27-11187db30e59",
+      "type": "entity",
+      "label": "tejas-image.js",
+      "data": {},
+      "tags": [
+        "auto-extracted"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:46:14.002Z",
+      "last_seen": "2026-04-07T04:46:14.002Z",
+      "relevance": 1
+    },
+    "7a7c9559-aa74-4f59-bf14-f13b15c2b757": {
+      "id": "7a7c9559-aa74-4f59-bf14-f13b15c2b757",
+      "type": "error",
+      "label": "API call failed: Request failed with status code 405",
+      "data": {
+        "task": "search the web for how to add 'Image Generation' to a Telegram bot using the OpenAI DALL-E API. Then, create a new script called 'tejas-image.js' that implements this feature\n  using my existing credentials.",
+        "agent": "web"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T04:46:14.012Z",
+      "last_seen": "2026-04-07T04:46:14.012Z",
+      "relevance": 1
+    },
+    "a473c8dd-c92b-4795-8e9a-5e2d85ef5afd": {
+      "id": "a473c8dd-c92b-4795-8e9a-5e2d85ef5afd",
+      "type": "task",
+      "label": "La",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-04-07T05:12:22.652Z",
+      "last_seen": "2026-04-07T05:12:22.652Z",
+      "relevance": 1
+    },
+    "7844e24d-5b3d-48a4-80b4-e16a6489040d": {
+      "id": "7844e24d-5b3d-48a4-80b4-e16a6489040d",
+      "type": "task",
+      "label": "What time is it",
+      "data": {
+        "agent": "workflow",
+        "success": false,
+        "duration_ms": 1
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-04-07T05:13:09.440Z",
+      "last_seen": "2026-04-07T05:13:09.440Z",
+      "relevance": 1
+    },
+    "ea368b22-4c97-458c-9506-fe73b727a92c": {
+      "id": "ea368b22-4c97-458c-9506-fe73b727a92c",
+      "type": "command",
+      "label": "date +%H:%M:%S",
+      "data": {
+        "description": "Get the current time using the date command"
+      },
+      "tags": [
+        "shell"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T05:13:09.445Z",
+      "last_seen": "2026-04-07T05:13:09.445Z",
+      "relevance": 1
+    },
+    "2c168479-3fd8-4aec-87e1-0da28c40d375": {
+      "id": "2c168479-3fd8-4aec-87e1-0da28c40d375",
+      "type": "error",
+      "label": "Forbidden shell operator detected in: \"date +%H:%M:%S\"",
+      "data": {
+        "task": "What time is it",
+        "agent": "workflow"
+      },
+      "tags": [
+        "error"
+      ],
+      "use_count": 1,
+      "created_at": "2026-04-07T05:13:09.452Z",
+      "last_seen": "2026-04-07T05:13:09.452Z",
+      "relevance": 1
+    },
+    "01aef096-f59f-45ea-8290-72b194de38be": {
+      "id": "01aef096-f59f-45ea-8290-72b194de38be",
+      "type": "task",
+      "label": "Hello",
+      "data": {
+        "agent": "workflow",
+        "success": true,
+        "duration_ms": 0
+      },
+      "tags": [],
+      "use_count": 1,
+      "created_at": "2026-04-22T16:25:40.220Z",
+      "last_seen": "2026-04-22T16:25:40.220Z",
+      "relevance": 1
+    }
+  },
+  "edges": [
+    {
+      "id": "9edf638e-1ce7-4b6e-8d20-d4c02bea4ec9",
+      "from": "054f7d2c-1f3e-4707-b07a-4c0f7720ee3c",
+      "to": "df2ff17b-2991-4706-9d2b-f54f1477c9de",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-24T09:50:19.658Z"
+    },
+    {
+      "id": "32089b9b-c87b-4ec3-ade5-4af07ffb6557",
+      "from": "054f7d2c-1f3e-4707-b07a-4c0f7720ee3c",
+      "to": "e3e482b0-67bc-4b95-89bb-d569c822b34f",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-24T09:50:19.661Z"
+    },
+    {
+      "id": "14613e9d-d0db-4bc3-a915-63afe18abd56",
+      "from": "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+      "to": "054f7d2c-1f3e-4707-b07a-4c0f7720ee3c",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-24T09:50:30.873Z"
+    },
+    {
+      "id": "ab79fa6f-9bfd-4f34-9077-9ab460e61349",
+      "from": "4d709048-489f-4c85-9d7b-a662dfaa92e4",
+      "to": "a1ae2dcb-ada3-45c5-9b00-28db3c993046",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-24T09:51:10.489Z"
+    },
+    {
+      "id": "bf4d81dc-027c-40a3-a7c2-d69bf2ade42d",
+      "from": "4d709048-489f-4c85-9d7b-a662dfaa92e4",
+      "to": "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-24T09:51:10.490Z"
+    },
+    {
+      "id": "ea0cf035-4685-4950-a884-4a74b1a8ef80",
+      "from": "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+      "to": "e888a1cb-d58c-4f6a-9331-ab811153898c",
+      "type": "contains_command",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-03-24T09:53:08.633Z"
+    },
+    {
+      "id": "f76ff174-b2e3-4143-be8c-2aff86b26e5e",
+      "from": "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+      "to": "4d709048-489f-4c85-9d7b-a662dfaa92e4",
+      "type": "follows",
+      "weight": 0.6,
+      "data": {},
+      "created_at": "2026-03-24T09:53:08.635Z"
+    },
+    {
+      "id": "6759fd30-a71b-46b9-959c-4a14de696358",
+      "from": "bee807c4-452a-46c8-bd41-8c908a585505",
+      "to": "ff4d8530-842b-4f00-b023-aaa12bfdc25f",
+      "type": "contains_command",
+      "weight": 1.2000000000000002,
+      "data": {},
+      "created_at": "2026-03-24T09:54:43.591Z"
+    },
+    {
+      "id": "3b6492e7-ae24-4814-a161-22fba9177684",
+      "from": "bee807c4-452a-46c8-bd41-8c908a585505",
+      "to": "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+      "type": "follows",
+      "weight": 0.6,
+      "data": {},
+      "created_at": "2026-03-24T09:54:43.593Z"
+    },
+    {
+      "id": "910e212d-54f5-4322-b08c-0add6a9154e2",
+      "from": "c79a581d-08ae-496d-8b14-045f10cea9ed",
+      "to": "ff2f5d0a-0391-4fd9-9646-c50f3da373f4",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-24T09:55:11.485Z"
+    },
+    {
+      "id": "0627f139-e1ef-4b4a-a790-d37956ba5353",
+      "from": "c79a581d-08ae-496d-8b14-045f10cea9ed",
+      "to": "eb26f7fc-6d60-4397-b37d-055296890c46",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-24T09:55:11.489Z"
+    },
+    {
+      "id": "39c8d0c4-b836-4a26-b8c9-2800273df7f0",
+      "from": "c79a581d-08ae-496d-8b14-045f10cea9ed",
+      "to": "5b546376-d466-4eef-a307-71ab6bbecf89",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-24T09:55:11.494Z"
+    },
+    {
+      "id": "7a88cec2-acd4-446d-8374-16bbfe23d426",
+      "from": "c79a581d-08ae-496d-8b14-045f10cea9ed",
+      "to": "bee807c4-452a-46c8-bd41-8c908a585505",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-24T09:55:11.496Z"
+    },
+    {
+      "id": "05eeac8f-c8ba-4825-9639-5ad4f5d6502b",
+      "from": "6836de8d-5bac-488e-be09-5443e02fd0d6",
+      "to": "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-24T09:56:01.528Z"
+    },
+    {
+      "id": "1fb95132-872d-43e6-bd43-6aeea7e93c9f",
+      "from": "6836de8d-5bac-488e-be09-5443e02fd0d6",
+      "to": "c79a581d-08ae-496d-8b14-045f10cea9ed",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-24T09:56:01.529Z"
+    },
+    {
+      "id": "fa437502-287a-4322-a75c-1e0915647493",
+      "from": "550f0d07-e058-4a90-99fb-d9416314c20e",
+      "to": "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:49:01.705Z"
+    },
+    {
+      "id": "3fffe847-8385-4ca7-b05c-9dc36fb3884c",
+      "from": "550f0d07-e058-4a90-99fb-d9416314c20e",
+      "to": "6836de8d-5bac-488e-be09-5443e02fd0d6",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:49:01.707Z"
+    },
+    {
+      "id": "45931ce1-5cfa-4ead-9a1e-615e492eeaa0",
+      "from": "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+      "to": "7cfa72ca-dcf6-4933-84fc-021193e9d0b1",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:49:27.922Z"
+    },
+    {
+      "id": "0694e76a-167b-49ad-8b10-4aa2bf8e3143",
+      "from": "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+      "to": "550f0d07-e058-4a90-99fb-d9416314c20e",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:49:27.928Z"
+    },
+    {
+      "id": "a3d2d67b-9f05-4e73-a934-f69917f0cc5e",
+      "from": "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+      "to": "d3927f7b-77ae-4e2d-8a6e-872781663efd",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:49:53.677Z"
+    },
+    {
+      "id": "151998ab-c3c0-4711-8773-8a1b588e6bae",
+      "from": "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+      "to": "5654efc4-dbf5-41cd-a92a-737f433fc0bc",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:49:53.682Z"
+    },
+    {
+      "id": "32346d7d-fb4c-4548-b6cb-fa4f0a45e839",
+      "from": "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+      "to": "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:49:53.685Z"
+    },
+    {
+      "id": "9d515c07-77ca-4fb4-94d6-812fcc1072b0",
+      "from": "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+      "to": "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:49:53.687Z"
+    },
+    {
+      "id": "4980921b-9195-425f-9315-60a301e16349",
+      "from": "bee807c4-452a-46c8-bd41-8c908a585505",
+      "to": "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:50:11.053Z"
+    },
+    {
+      "id": "e6956a54-542a-4785-82f9-11a45ec96024",
+      "from": "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+      "to": "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca",
+      "type": "contains_command",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-03-27T06:50:35.416Z"
+    },
+    {
+      "id": "1ea10e76-2758-48fd-a46d-a2cbcc164e74",
+      "from": "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+      "to": "5b7de709-119c-4ab2-bc4f-b247fc08d2c2",
+      "type": "contains_command",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-03-27T06:50:35.421Z"
+    },
+    {
+      "id": "594f13d9-f082-433e-ac82-924f7a939164",
+      "from": "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+      "to": "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+      "type": "caused_error",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-03-27T06:50:35.426Z"
+    },
+    {
+      "id": "97c61003-3205-4395-9e57-78d4e1ca257d",
+      "from": "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+      "to": "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+      "type": "follows",
+      "weight": 0.6,
+      "data": {},
+      "created_at": "2026-03-27T06:50:35.429Z"
+    },
+    {
+      "id": "a0ccbbd9-3a1d-4eca-b846-ef371ea8646d",
+      "from": "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+      "to": "5b7de709-119c-4ab2-bc4f-b247fc08d2c2",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:51:16.874Z"
+    },
+    {
+      "id": "f612a601-29d1-4a4c-807f-2529263b8c05",
+      "from": "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+      "to": "87e35938-03d2-4e11-886f-c561a9218861",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:51:16.885Z"
+    },
+    {
+      "id": "4c4eaf65-4bdb-433a-9c03-76b1aec3e025",
+      "from": "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+      "to": "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:51:16.888Z"
+    },
+    {
+      "id": "98f55b7b-8b53-4137-a34f-70804d43b440",
+      "from": "4c4790ea-5229-4b38-bb15-38801ee672da",
+      "to": "1e608611-94f9-4101-a51c-8ce8944ca691",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:51:30.916Z"
+    },
+    {
+      "id": "e8cab290-5b2f-4d1d-8fa7-4715bf265d6e",
+      "from": "4c4790ea-5229-4b38-bb15-38801ee672da",
+      "to": "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:51:30.926Z"
+    },
+    {
+      "id": "6219a1a2-d383-40ab-93dc-e245d59f3d77",
+      "from": "4c4790ea-5229-4b38-bb15-38801ee672da",
+      "to": "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:51:30.931Z"
+    },
+    {
+      "id": "3e44f317-3dfa-4cf4-bac1-501bf4c8d1b4",
+      "from": "192f15bb-3014-4abb-afde-dc07e65af2fb",
+      "to": "9bcd8879-93bb-4345-b97c-49350bec2ee9",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:51:42.541Z"
+    },
+    {
+      "id": "2b70885f-b69a-44f6-a306-3e4b8e00ab58",
+      "from": "192f15bb-3014-4abb-afde-dc07e65af2fb",
+      "to": "4c4790ea-5229-4b38-bb15-38801ee672da",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:51:42.554Z"
+    },
+    {
+      "id": "3369a10d-ae12-4b03-be51-456ee5561601",
+      "from": "096adafe-c525-4ac0-a0b2-d014599ef05d",
+      "to": "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:52:08.951Z"
+    },
+    {
+      "id": "f0c875a4-9ddb-460d-8d71-052c9be0b66f",
+      "from": "096adafe-c525-4ac0-a0b2-d014599ef05d",
+      "to": "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:52:08.955Z"
+    },
+    {
+      "id": "b586d39a-1e06-4506-86fa-4eabdb79c0fc",
+      "from": "096adafe-c525-4ac0-a0b2-d014599ef05d",
+      "to": "192f15bb-3014-4abb-afde-dc07e65af2fb",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:52:08.957Z"
+    },
+    {
+      "id": "7a4ebb5b-7a02-433d-990f-919dbff83ccb",
+      "from": "0febc0ba-c782-4a54-97b5-0595169f0971",
+      "to": "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:52:26.793Z"
+    },
+    {
+      "id": "7ec8b1ba-e05e-4f71-a0a9-0bc4d0e50a9d",
+      "from": "0febc0ba-c782-4a54-97b5-0595169f0971",
+      "to": "6e29ed43-6379-47fc-a922-840f52b37060",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:52:26.796Z"
+    },
+    {
+      "id": "beb0c55c-446d-419b-bcf2-c36ca11474df",
+      "from": "0febc0ba-c782-4a54-97b5-0595169f0971",
+      "to": "096adafe-c525-4ac0-a0b2-d014599ef05d",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:52:26.799Z"
+    },
+    {
+      "id": "bc901f0d-8e3a-48c6-a667-64441042f87b",
+      "from": "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+      "to": "0febc0ba-c782-4a54-97b5-0595169f0971",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:54:03.828Z"
+    },
+    {
+      "id": "0df7a5ce-40d8-4261-af41-882082fb875f",
+      "from": "7258b68f-e23e-421d-83a3-92ded8e2460c",
+      "to": "27449bf0-95de-401b-9223-fa32c2dd7832",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:54:57.399Z"
+    },
+    {
+      "id": "f080aa13-3096-4699-b126-3e0b7bbeac99",
+      "from": "7258b68f-e23e-421d-83a3-92ded8e2460c",
+      "to": "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:54:57.403Z"
+    },
+    {
+      "id": "5e5142a1-315e-46c3-9738-1ac43f724f33",
+      "from": "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+      "to": "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:56:17.258Z"
+    },
+    {
+      "id": "f8975311-0784-4752-9a1b-fe94bdfd9913",
+      "from": "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+      "to": "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:56:17.263Z"
+    },
+    {
+      "id": "58621f92-870e-4342-a45f-341c89b8ea45",
+      "from": "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+      "to": "7258b68f-e23e-421d-83a3-92ded8e2460c",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:56:17.266Z"
+    },
+    {
+      "id": "23a6fcac-ca2b-4eae-9be0-52c7390c032a",
+      "from": "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+      "to": "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:56:33.288Z"
+    },
+    {
+      "id": "0c246bfd-f2ee-4dda-8bfc-27e380155b7b",
+      "from": "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+      "to": "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:56:33.292Z"
+    },
+    {
+      "id": "5bd82704-ed0b-49b3-8277-32edde2a3ed0",
+      "from": "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+      "to": "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:56:33.295Z"
+    },
+    {
+      "id": "68baaf42-3c4b-48d1-ab1e-16f22e32103d",
+      "from": "a71b8f24-ea96-4fe7-88a5-12e7ccfcddb4",
+      "to": "c0635d1e-f0a8-4ebb-98f3-953b6264d785",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T06:56:53.461Z"
+    },
+    {
+      "id": "1015e408-91bf-4bb3-8d66-ab04cb81e760",
+      "from": "a71b8f24-ea96-4fe7-88a5-12e7ccfcddb4",
+      "to": "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T06:56:53.466Z"
+    },
+    {
+      "id": "fd22af48-a7d2-4a9b-8759-fe1876ebcd2a",
+      "from": "9bd0a966-aef3-442e-9fa3-cea3ba06d821",
+      "to": "aeef19ba-9afc-4dae-b12f-2d3336bb01c1",
+      "type": "contains_command",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-03-27T07:20:44.793Z"
+    },
+    {
+      "id": "2fe04485-35c1-4e58-a172-b666cc1b4a53",
+      "from": "9bd0a966-aef3-442e-9fa3-cea3ba06d821",
+      "to": "a71b8f24-ea96-4fe7-88a5-12e7ccfcddb4",
+      "type": "follows",
+      "weight": 0.6,
+      "data": {},
+      "created_at": "2026-03-27T07:20:44.795Z"
+    },
+    {
+      "id": "fa629f48-2030-4e70-8fbc-7a4370762588",
+      "from": "df7dd630-251c-414c-a43e-65e8f2b643bd",
+      "to": "df2ff17b-2991-4706-9d2b-f54f1477c9de",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T07:45:54.344Z"
+    },
+    {
+      "id": "3abb0fd8-cef7-497e-935b-a02ed567ed04",
+      "from": "df7dd630-251c-414c-a43e-65e8f2b643bd",
+      "to": "9bd0a966-aef3-442e-9fa3-cea3ba06d821",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T07:45:54.347Z"
+    },
+    {
+      "id": "909d5358-21ba-49a5-b55f-248f0d1eb0c2",
+      "from": "a5427be7-e29e-4371-8903-f286423f2035",
+      "to": "df2ff17b-2991-4706-9d2b-f54f1477c9de",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T07:46:25.610Z"
+    },
+    {
+      "id": "2b64e924-609d-4d2f-9639-00e97e442ca6",
+      "from": "a5427be7-e29e-4371-8903-f286423f2035",
+      "to": "df7dd630-251c-414c-a43e-65e8f2b643bd",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T07:46:25.612Z"
+    },
+    {
+      "id": "e2320df6-afb8-47cd-9ab0-898329ed0fc7",
+      "from": "6bd9b6f3-2f71-46c4-a625-085652ce139e",
+      "to": "a5427be7-e29e-4371-8903-f286423f2035",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T07:47:27.491Z"
+    },
+    {
+      "id": "149a4587-ea85-4e24-bca8-e71232a27659",
+      "from": "7802f46e-a020-4b96-a468-8923f319bede",
+      "to": "37586a63-7e7b-4a27-b53a-d3f982689bdc",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T07:47:42.149Z"
+    },
+    {
+      "id": "b1fbef0f-6b92-4fd3-ae21-e00f14215411",
+      "from": "7802f46e-a020-4b96-a468-8923f319bede",
+      "to": "6bd9b6f3-2f71-46c4-a625-085652ce139e",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T07:47:42.152Z"
+    },
+    {
+      "id": "aaf05c43-a220-4dba-9b0a-8d7ba10533c1",
+      "from": "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+      "to": "a13560fa-b615-48dc-b51e-6e6a45c40422",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-03-27T07:49:24.494Z"
+    },
+    {
+      "id": "8149853f-b8b1-4d71-8fbe-2b98d9148b90",
+      "from": "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+      "to": "7802f46e-a020-4b96-a468-8923f319bede",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-03-27T07:49:24.502Z"
+    },
+    {
+      "id": "37a75d4c-4d4f-4b52-afff-62e313c64bdc",
+      "from": "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+      "to": "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-03T14:12:42.038Z"
+    },
+    {
+      "id": "dd8c8cea-e710-4a04-9bc0-cfa22918d2b8",
+      "from": "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+      "to": "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-03T14:12:58.142Z"
+    },
+    {
+      "id": "4c0d8b3f-ac00-4d00-91ee-c48d17a61748",
+      "from": "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+      "to": "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+      "type": "follows",
+      "weight": 0.6,
+      "data": {},
+      "created_at": "2026-04-03T14:12:58.147Z"
+    },
+    {
+      "id": "5c2b1806-9619-40e1-a138-410abbe9da76",
+      "from": "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+      "to": "15fa7009-65e6-4399-9467-8d9cc1799bf8",
+      "type": "contains_command",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-04-03T15:33:21.976Z"
+    },
+    {
+      "id": "ad3a68a1-8653-4375-a07a-633e68e7a3d5",
+      "from": "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+      "to": "c667c9a7-a3d3-46c2-9c37-09f850720c88",
+      "type": "caused_error",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-04-03T15:33:21.993Z"
+    },
+    {
+      "id": "f542759f-8037-4a4c-8f06-c198360afe35",
+      "from": "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+      "to": "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+      "type": "follows",
+      "weight": 0.7,
+      "data": {},
+      "created_at": "2026-04-03T15:33:21.999Z"
+    },
+    {
+      "id": "b77505ab-5213-48a3-b580-b2b5403d23be",
+      "from": "5884bcd0-1574-413f-af39-57f310a8dca7",
+      "to": "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-03T15:57:22.196Z"
+    },
+    {
+      "id": "d12f6610-4c85-484d-a0b9-5b3ed96411a1",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "5e160947-00f3-422f-9d3c-508292b58f41",
+      "type": "associated_with",
+      "weight": 1.3000000000000003,
+      "data": {},
+      "created_at": "2026-04-04T14:14:15.285Z"
+    },
+    {
+      "id": "fcaaee3f-fd0a-446f-8efe-06d25d6e9631",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "d68f8f45-fa49-4151-b781-60128e8f9a15",
+      "type": "contains_command",
+      "weight": 1.2000000000000002,
+      "data": {},
+      "created_at": "2026-04-04T14:14:15.292Z"
+    },
+    {
+      "id": "7195a1c8-71c8-45d9-ac2e-bd68a1e51bf7",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+      "type": "contains_command",
+      "weight": 1.2000000000000002,
+      "data": {},
+      "created_at": "2026-04-04T14:14:15.300Z"
+    },
+    {
+      "id": "708f1783-6e6b-4cd2-be42-f24996c61a63",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "5884bcd0-1574-413f-af39-57f310a8dca7",
+      "type": "follows",
+      "weight": 0.7999999999999999,
+      "data": {},
+      "created_at": "2026-04-04T14:14:15.305Z"
+    },
+    {
+      "id": "c5f18d04-bd95-42fa-87a1-5dc054898cb9",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "0d838c93-c57c-4fe9-a53f-ca8fa7f71a0c",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-04T14:17:26.568Z"
+    },
+    {
+      "id": "541a6398-b07b-4341-82a5-da6adaa98ee2",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "a739586c-d1dc-4c44-920c-7692bb192bc0",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-04T14:17:26.576Z"
+    },
+    {
+      "id": "11cd4f3f-c82b-443f-8da5-61810f05b532",
+      "from": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "to": "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-04T14:17:26.583Z"
+    },
+    {
+      "id": "6ede3816-dbf6-460e-8896-a1b5a68b5196",
+      "from": "7d962c62-bc60-4bbe-ac17-d47ae574af50",
+      "to": "b3544fee-3afe-43ed-9a3c-c056a56ab9c7",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-06T16:21:27.628Z"
+    },
+    {
+      "id": "2e9c7503-cfe2-4935-9bb4-636c68ed0a77",
+      "from": "7d962c62-bc60-4bbe-ac17-d47ae574af50",
+      "to": "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-06T16:21:27.636Z"
+    },
+    {
+      "id": "0e5ebab9-0f81-455e-9289-68300ea07e85",
+      "from": "7d962c62-bc60-4bbe-ac17-d47ae574af50",
+      "to": "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-06T16:21:27.648Z"
+    },
+    {
+      "id": "93de813c-c9bc-4ad9-8e5d-b0a2b87f6693",
+      "from": "9d7202f0-3a4b-4f42-9a98-e418a6f1c23b",
+      "to": "7d962c62-bc60-4bbe-ac17-d47ae574af50",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-06T16:22:17.373Z"
+    },
+    {
+      "id": "3ccaae34-99cc-4cfe-8c4c-0b5203fa0d5f",
+      "from": "c10540b8-31e4-4d7e-938a-0633d94ed987",
+      "to": "08575b5e-8280-4c11-82b7-5847215a49b1",
+      "type": "associated_with",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-04-06T16:30:45.662Z"
+    },
+    {
+      "id": "d6b6d204-c048-4850-89ab-f72af1e33eff",
+      "from": "c10540b8-31e4-4d7e-938a-0633d94ed987",
+      "to": "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+      "type": "caused_error",
+      "weight": 1.1,
+      "data": {},
+      "created_at": "2026-04-06T16:30:45.670Z"
+    },
+    {
+      "id": "aa8e957b-f477-4cab-b6bd-9d9a2b5dd19a",
+      "from": "c10540b8-31e4-4d7e-938a-0633d94ed987",
+      "to": "9d7202f0-3a4b-4f42-9a98-e418a6f1c23b",
+      "type": "follows",
+      "weight": 0.6,
+      "data": {},
+      "created_at": "2026-04-06T16:30:45.674Z"
+    },
+    {
+      "id": "7d03e168-f9f4-42d4-8579-d879e80f2506",
+      "from": "7976c59f-f458-4e03-8ca1-a9baef298368",
+      "to": "c6fd5daf-f45e-4928-b389-391717bd0103",
+      "type": "associated_with",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T04:45:19.003Z"
+    },
+    {
+      "id": "d6f5ecfb-d87c-429b-987a-f0e26baa59dc",
+      "from": "7976c59f-f458-4e03-8ca1-a9baef298368",
+      "to": "980dbb4c-c78a-4a87-bd16-b5e45f8c7522",
+      "type": "associated_with",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T04:45:19.011Z"
+    },
+    {
+      "id": "f070dbcd-1d45-457a-84a1-520fad8199b3",
+      "from": "7976c59f-f458-4e03-8ca1-a9baef298368",
+      "to": "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T04:45:19.020Z"
+    },
+    {
+      "id": "7fe14eb3-4d69-4bfb-a8dc-f92ccabfbd98",
+      "from": "7976c59f-f458-4e03-8ca1-a9baef298368",
+      "to": "c10540b8-31e4-4d7e-938a-0633d94ed987",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-07T04:45:19.024Z"
+    },
+    {
+      "id": "ec7f7148-80c6-4bd7-900f-4853ad4d9cde",
+      "from": "83263a3b-a93f-400a-8a83-4a40923f3c32",
+      "to": "dd893f04-ae32-4eea-8627-5c5cccc21766",
+      "type": "associated_with",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T04:46:13.998Z"
+    },
+    {
+      "id": "ad9cc680-b40e-4f9e-bf7f-dac92b18447f",
+      "from": "83263a3b-a93f-400a-8a83-4a40923f3c32",
+      "to": "a0800c48-a2f5-4ca5-9f27-11187db30e59",
+      "type": "associated_with",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T04:46:14.006Z"
+    },
+    {
+      "id": "a4f7ce45-d4ea-4f9f-8b04-2ca8fb3fd05f",
+      "from": "83263a3b-a93f-400a-8a83-4a40923f3c32",
+      "to": "7a7c9559-aa74-4f59-bf14-f13b15c2b757",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T04:46:14.016Z"
+    },
+    {
+      "id": "9bfea461-a823-4141-bd6a-c90735be28f6",
+      "from": "83263a3b-a93f-400a-8a83-4a40923f3c32",
+      "to": "7976c59f-f458-4e03-8ca1-a9baef298368",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-07T04:46:14.021Z"
+    },
+    {
+      "id": "4e11a16e-31d7-4c1b-8eae-bf43acc5b69c",
+      "from": "a473c8dd-c92b-4795-8e9a-5e2d85ef5afd",
+      "to": "83263a3b-a93f-400a-8a83-4a40923f3c32",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-07T05:12:22.656Z"
+    },
+    {
+      "id": "9ab6c164-fa9a-4fb0-be35-f37748e4eb03",
+      "from": "7844e24d-5b3d-48a4-80b4-e16a6489040d",
+      "to": "ea368b22-4c97-458c-9506-fe73b727a92c",
+      "type": "contains_command",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T05:13:09.449Z"
+    },
+    {
+      "id": "2d397243-c23e-4bde-a105-064b212a7159",
+      "from": "7844e24d-5b3d-48a4-80b4-e16a6489040d",
+      "to": "2c168479-3fd8-4aec-87e1-0da28c40d375",
+      "type": "caused_error",
+      "weight": 1,
+      "data": {},
+      "created_at": "2026-04-07T05:13:09.457Z"
+    },
+    {
+      "id": "8a917566-5779-4f9d-bdf5-df658b91873d",
+      "from": "7844e24d-5b3d-48a4-80b4-e16a6489040d",
+      "to": "a473c8dd-c92b-4795-8e9a-5e2d85ef5afd",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-07T05:13:09.462Z"
+    },
+    {
+      "id": "ce629b7d-b7d0-408d-a133-72f13d6d5e18",
+      "from": "01aef096-f59f-45ea-8290-72b194de38be",
+      "to": "7844e24d-5b3d-48a4-80b4-e16a6489040d",
+      "type": "follows",
+      "weight": 0.5,
+      "data": {},
+      "created_at": "2026-04-22T16:25:40.224Z"
+    }
+  ],
+  "index": {
+    "by_type": {
+      "task": [
+        "e3e482b0-67bc-4b95-89bb-d569c822b34f",
+        "054f7d2c-1f3e-4707-b07a-4c0f7720ee3c",
+        "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+        "4d709048-489f-4c85-9d7b-a662dfaa92e4",
+        "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+        "bee807c4-452a-46c8-bd41-8c908a585505",
+        "c79a581d-08ae-496d-8b14-045f10cea9ed",
+        "6836de8d-5bac-488e-be09-5443e02fd0d6",
+        "550f0d07-e058-4a90-99fb-d9416314c20e",
+        "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+        "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+        "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+        "4c4790ea-5229-4b38-bb15-38801ee672da",
+        "192f15bb-3014-4abb-afde-dc07e65af2fb",
+        "096adafe-c525-4ac0-a0b2-d014599ef05d",
+        "0febc0ba-c782-4a54-97b5-0595169f0971",
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+        "7258b68f-e23e-421d-83a3-92ded8e2460c",
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+        "a71b8f24-ea96-4fe7-88a5-12e7ccfcddb4",
+        "9bd0a966-aef3-442e-9fa3-cea3ba06d821",
+        "df7dd630-251c-414c-a43e-65e8f2b643bd",
+        "a5427be7-e29e-4371-8903-f286423f2035",
+        "6bd9b6f3-2f71-46c4-a625-085652ce139e",
+        "7802f46e-a020-4b96-a468-8923f319bede",
+        "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+        "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+        "5884bcd0-1574-413f-af39-57f310a8dca7",
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "7d962c62-bc60-4bbe-ac17-d47ae574af50",
+        "9d7202f0-3a4b-4f42-9a98-e418a6f1c23b",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32",
+        "a473c8dd-c92b-4795-8e9a-5e2d85ef5afd",
+        "7844e24d-5b3d-48a4-80b4-e16a6489040d",
+        "01aef096-f59f-45ea-8290-72b194de38be"
+      ],
+      "command": [
+        "df2ff17b-2991-4706-9d2b-f54f1477c9de",
+        "a1ae2dcb-ada3-45c5-9b00-28db3c993046",
+        "e888a1cb-d58c-4f6a-9331-ab811153898c",
+        "ff4d8530-842b-4f00-b023-aaa12bfdc25f",
+        "ff2f5d0a-0391-4fd9-9646-c50f3da373f4",
+        "eb26f7fc-6d60-4397-b37d-055296890c46",
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+        "7cfa72ca-dcf6-4933-84fc-021193e9d0b1",
+        "d3927f7b-77ae-4e2d-8a6e-872781663efd",
+        "5654efc4-dbf5-41cd-a92a-737f433fc0bc",
+        "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca",
+        "5b7de709-119c-4ab2-bc4f-b247fc08d2c2",
+        "1e608611-94f9-4101-a51c-8ce8944ca691",
+        "9bcd8879-93bb-4345-b97c-49350bec2ee9",
+        "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+        "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "c0635d1e-f0a8-4ebb-98f3-953b6264d785",
+        "aeef19ba-9afc-4dae-b12f-2d3336bb01c1",
+        "37586a63-7e7b-4a27-b53a-d3f982689bdc",
+        "a13560fa-b615-48dc-b51e-6e6a45c40422",
+        "15fa7009-65e6-4399-9467-8d9cc1799bf8",
+        "d68f8f45-fa49-4151-b781-60128e8f9a15",
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+        "0d838c93-c57c-4fe9-a53f-ca8fa7f71a0c",
+        "a739586c-d1dc-4c44-920c-7692bb192bc0",
+        "b3544fee-3afe-43ed-9a3c-c056a56ab9c7",
+        "ea368b22-4c97-458c-9506-fe73b727a92c"
+      ],
+      "error": [
+        "5b546376-d466-4eef-a307-71ab6bbecf89",
+        "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "27449bf0-95de-401b-9223-fa32c2dd7832",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88",
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "entity": [
+        "5e160947-00f3-422f-9d3c-508292b58f41",
+        "08575b5e-8280-4c11-82b7-5847215a49b1",
+        "c6fd5daf-f45e-4928-b389-391717bd0103",
+        "980dbb4c-c78a-4a87-bd16-b5e45f8c7522",
+        "dd893f04-ae32-4eea-8627-5c5cccc21766",
+        "a0800c48-a2f5-4ca5-9f27-11187db30e59"
+      ]
+    },
+    "by_tag": {
+      "shell": [
+        "df2ff17b-2991-4706-9d2b-f54f1477c9de",
+        "a1ae2dcb-ada3-45c5-9b00-28db3c993046",
+        "e888a1cb-d58c-4f6a-9331-ab811153898c",
+        "ff4d8530-842b-4f00-b023-aaa12bfdc25f",
+        "ff2f5d0a-0391-4fd9-9646-c50f3da373f4",
+        "eb26f7fc-6d60-4397-b37d-055296890c46",
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+        "7cfa72ca-dcf6-4933-84fc-021193e9d0b1",
+        "d3927f7b-77ae-4e2d-8a6e-872781663efd",
+        "5654efc4-dbf5-41cd-a92a-737f433fc0bc",
+        "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca",
+        "5b7de709-119c-4ab2-bc4f-b247fc08d2c2",
+        "1e608611-94f9-4101-a51c-8ce8944ca691",
+        "9bcd8879-93bb-4345-b97c-49350bec2ee9",
+        "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+        "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "c0635d1e-f0a8-4ebb-98f3-953b6264d785",
+        "aeef19ba-9afc-4dae-b12f-2d3336bb01c1",
+        "37586a63-7e7b-4a27-b53a-d3f982689bdc",
+        "a13560fa-b615-48dc-b51e-6e6a45c40422",
+        "15fa7009-65e6-4399-9467-8d9cc1799bf8",
+        "d68f8f45-fa49-4151-b781-60128e8f9a15",
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+        "0d838c93-c57c-4fe9-a53f-ca8fa7f71a0c",
+        "a739586c-d1dc-4c44-920c-7692bb192bc0",
+        "b3544fee-3afe-43ed-9a3c-c056a56ab9c7",
+        "ea368b22-4c97-458c-9506-fe73b727a92c"
+      ],
+      "file": [
+        "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+        "550f0d07-e058-4a90-99fb-d9416314c20e",
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+        "7258b68f-e23e-421d-83a3-92ded8e2460c",
+        "df7dd630-251c-414c-a43e-65e8f2b643bd",
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "error": [
+        "5b546376-d466-4eef-a307-71ab6bbecf89",
+        "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "27449bf0-95de-401b-9223-fa32c2dd7832",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88",
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "create": [
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+        "7258b68f-e23e-421d-83a3-92ded8e2460c",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "test": [
+        "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd"
+      ],
+      "python": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed"
+      ],
+      "auto-extracted": [
+        "5e160947-00f3-422f-9d3c-508292b58f41",
+        "08575b5e-8280-4c11-82b7-5847215a49b1",
+        "c6fd5daf-f45e-4928-b389-391717bd0103",
+        "980dbb4c-c78a-4a87-bd16-b5e45f8c7522",
+        "dd893f04-ae32-4eea-8627-5c5cccc21766",
+        "a0800c48-a2f5-4ca5-9f27-11187db30e59"
+      ],
+      "api": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ]
+    },
+    "by_text": {
+      "405": [
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "429": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a"
+      ],
+      "2020": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "2026": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "list": [
+        "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+        "a5427be7-e29e-4371-8903-f286423f2035",
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed"
+      ],
+      "files": [
+        "8e5a9ac3-646a-4b14-b329-3501a6a070df",
+        "550f0d07-e058-4a90-99fb-d9416314c20e",
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "echo": [
+        "a1ae2dcb-ada3-45c5-9b00-28db3c993046",
+        "e888a1cb-d58c-4f6a-9331-ab811153898c",
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "c0635d1e-f0a8-4ebb-98f3-953b6264d785",
+        "aeef19ba-9afc-4dae-b12f-2d3336bb01c1",
+        "15fa7009-65e6-4399-9467-8d9cc1799bf8",
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88"
+      ],
+      "tejas": [
+        "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+        "e888a1cb-d58c-4f6a-9331-ab811153898c",
+        "6836de8d-5bac-488e-be09-5443e02fd0d6",
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+        "550f0d07-e058-4a90-99fb-d9416314c20e",
+        "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+        "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+        "5b7de709-119c-4ab2-bc4f-b247fc08d2c2",
+        "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "4c4790ea-5229-4b38-bb15-38801ee672da",
+        "1e608611-94f9-4101-a51c-8ce8944ca691",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "b3544fee-3afe-43ed-9a3c-c056a56ab9c7",
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32",
+        "a0800c48-a2f5-4ca5-9f27-11187db30e59"
+      ],
+      "dashboard": [
+        "b2c69f5d-48e5-44b9-b9b6-db4ca7d81d22",
+        "e888a1cb-d58c-4f6a-9331-ab811153898c",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "b3544fee-3afe-43ed-9a3c-c056a56ab9c7",
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10"
+      ],
+      "close": [
+        "bee807c4-452a-46c8-bd41-8c908a585505",
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c"
+      ],
+      "firefox": [
+        "bee807c4-452a-46c8-bd41-8c908a585505",
+        "ff4d8530-842b-4f00-b023-aaa12bfdc25f",
+        "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+        "7cfa72ca-dcf6-4933-84fc-021193e9d0b1",
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+        "d3927f7b-77ae-4e2d-8a6e-872781663efd",
+        "0febc0ba-c782-4a54-97b5-0595169f0971",
+        "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+        "6e29ed43-6379-47fc-a922-840f52b37060"
+      ],
+      "pkill": [
+        "ff4d8530-842b-4f00-b023-aaa12bfdc25f",
+        "ff2f5d0a-0391-4fd9-9646-c50f3da373f4",
+        "5b546376-d466-4eef-a307-71ab6bbecf89",
+        "5654efc4-dbf5-41cd-a92a-737f433fc0bc",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51"
+      ],
+      "restart": [
+        "c79a581d-08ae-496d-8b14-045f10cea9ed"
+      ],
+      "virtual": [
+        "c79a581d-08ae-496d-8b14-045f10cea9ed"
+      ],
+      "box": [
+        "c79a581d-08ae-496d-8b14-045f10cea9ed"
+      ],
+      "virtualbox": [
+        "ff2f5d0a-0391-4fd9-9646-c50f3da373f4",
+        "eb26f7fc-6d60-4397-b37d-055296890c46",
+        "5b546376-d466-4eef-a307-71ab6bbecf89"
+      ],
+      "command": [
+        "5b546376-d466-4eef-a307-71ab6bbecf89",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88",
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed"
+      ],
+      "failed": [
+        "5b546376-d466-4eef-a307-71ab6bbecf89",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88",
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "status": [
+        "6836de8d-5bac-488e-be09-5443e02fd0d6",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "online": [
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796"
+      ],
+      "and": [
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796",
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+        "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "4c4790ea-5229-4b38-bb15-38801ee672da",
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "ready": [
+        "261bedc8-3716-4b3b-8f7c-fb54005b3796"
+      ],
+      "check": [
+        "550f0d07-e058-4a90-99fb-d9416314c20e"
+      ],
+      "all": [
+        "550f0d07-e058-4a90-99fb-d9416314c20e",
+        "192f15bb-3014-4abb-afde-dc07e65af2fb",
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "file": [
+        "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+        "7258b68f-e23e-421d-83a3-92ded8e2460c",
+        "27449bf0-95de-401b-9223-fa32c2dd7832",
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "not": [
+        "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "found": [
+        "e3bb6c63-aba0-4d35-b9ab-a5a13e650bad",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "open": [
+        "7d7c00a5-5e6d-4815-9f7e-7c935d698ae1",
+        "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+        "4c4790ea-5229-4b38-bb15-38801ee672da"
+      ],
+      "new": [
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c",
+        "4c4790ea-5229-4b38-bb15-38801ee672da",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "keep": [
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c"
+      ],
+      "old": [
+        "ace7f151-d4df-4242-a5d0-0ea2c3754d1c"
+      ],
+      "pgrep": [
+        "d3927f7b-77ae-4e2d-8a6e-872781663efd"
+      ],
+      "pid": [
+        "5654efc4-dbf5-41cd-a92a-737f433fc0bc",
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51"
+      ],
+      "number": [
+        "07d88db4-e334-4c51-baf8-16e1d50e7e51",
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "terminal": [
+        "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+        "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "4c4790ea-5229-4b38-bb15-38801ee672da",
+        "1e608611-94f9-4101-a51c-8ce8944ca691",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "096adafe-c525-4ac0-a0b2-d014599ef05d"
+      ],
+      "run": [
+        "9c3ea0eb-9453-45be-b027-8cc3fca7a6b7",
+        "7584d07c-fe1b-47b5-9f2d-8ff18e99a3e1",
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "4c4790ea-5229-4b38-bb15-38801ee672da"
+      ],
+      "gnome": [
+        "d17066c6-e6c3-4dcc-9c68-c20ad4a437ca",
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "1e608611-94f9-4101-a51c-8ce8944ca691",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7"
+      ],
+      "bin": [
+        "40f8d467-b933-479c-a73e-b4a3e1ae15d7",
+        "1e608611-94f9-4101-a51c-8ce8944ca691",
+        "bcfd3e0f-fc26-4698-a844-9a22b59b09f7",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88"
+      ],
+      "usage": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "options": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "robotics": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd"
+      ],
+      "operating": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "system": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "version": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "output": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "the": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "help": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "display": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "for": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+        "eec44e52-39b6-4edc-8bd1-d3ac990156ab",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "commands": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "init": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "initialize": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "current": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "project": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "task": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "execute": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "using": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "agents": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "brain": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "inspect": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "layer": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "cache": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "models": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "constitution": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "voice": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "activate": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "interface": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "launch": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "web": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "show": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "graph": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "knowledge": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "agent": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "manage": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "memory": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "learn": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "fact": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "teach": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "preference": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "config": [
+        "87e35938-03d2-4e11-886f-c561a9218861",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "configuration": [
+        "87e35938-03d2-4e11-886f-c561a9218861"
+      ],
+      "minimize": [
+        "192f15bb-3014-4abb-afde-dc07e65af2fb"
+      ],
+      "xdotool": [
+        "9bcd8879-93bb-4345-b97c-49350bec2ee9"
+      ],
+      "key": [
+        "9bcd8879-93bb-4345-b97c-49350bec2ee9",
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "super": [
+        "9bcd8879-93bb-4345-b97c-49350bec2ee9"
+      ],
+      "maximize": [
+        "096adafe-c525-4ac0-a0b2-d014599ef05d",
+        "0febc0ba-c782-4a54-97b5-0595169f0971"
+      ],
+      "wmctrl": [
+        "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+        "6e29ed43-6379-47fc-a922-840f52b37060"
+      ],
+      "active": [
+        "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba"
+      ],
+      "add": [
+        "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+        "6e29ed43-6379-47fc-a922-840f52b37060",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "fullscreen": [
+        "9ac6b223-f6f6-45a1-bce7-3fe166d7ddb9",
+        "3ad243f6-841a-4d14-8493-1b3e803ab7ba",
+        "61b4a929-c1a9-459a-aa42-5d7b4b05a864",
+        "6e29ed43-6379-47fc-a922-840f52b37060"
+      ],
+      "create": [
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "html": [
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3",
+        "7258b68f-e23e-421d-83a3-92ded8e2460c"
+      ],
+      "traffic": [
+        "886ce5f8-d56b-49c2-9088-5352ea6e16d3"
+      ],
+      "where": [
+        "7258b68f-e23e-421d-83a3-92ded8e2460c"
+      ],
+      "you": [
+        "7258b68f-e23e-421d-83a3-92ded8e2460c"
+      ],
+      "had": [
+        "7258b68f-e23e-421d-83a3-92ded8e2460c"
+      ],
+      "created": [
+        "7258b68f-e23e-421d-83a3-92ded8e2460c"
+      ],
+      "location": [
+        "7258b68f-e23e-421d-83a3-92ded8e2460c"
+      ],
+      "path": [
+        "27449bf0-95de-401b-9223-fa32c2dd7832"
+      ],
+      "provided": [
+        "27449bf0-95de-401b-9223-fa32c2dd7832"
+      ],
+      "speak": [
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb"
+      ],
+      "improving": [
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "with": [
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "human": [
+        "fb8a4e61-07ff-494e-9275-e16fbf2c918d",
+        "63c4eed3-326d-435e-ac40-4fb007b2d6bb",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "festival": [
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "tts": [
+        "c6e70120-85ec-4414-8ea2-f4dd2841eadf",
+        "078f0d0b-79ea-4257-8b95-933a34dee9c4",
+        "e863bc85-e685-4fe1-b8ba-3323dd3044bf",
+        "158df53f-3d2e-4aed-9f79-6b16a2c5c280"
+      ],
+      "listfiles": [
+        "df7dd630-251c-414c-a43e-65e8f2b643bd"
+      ],
+      "fils": [
+        "a5427be7-e29e-4371-8903-f286423f2035"
+      ],
+      "pws": [
+        "6bd9b6f3-2f71-46c4-a625-085652ce139e"
+      ],
+      "pwd": [
+        "7802f46e-a020-4b96-a468-8923f319bede",
+        "37586a63-7e7b-4a27-b53a-d3f982689bdc"
+      ],
+      "sudo": [
+        "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+        "a13560fa-b615-48dc-b51e-6e6a45c40422"
+      ],
+      "mkdir": [
+        "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+        "a13560fa-b615-48dc-b51e-6e6a45c40422"
+      ],
+      "teletest": [
+        "5b95fbab-7d3f-4d1e-83b4-8fa05af2dd81",
+        "a13560fa-b615-48dc-b51e-6e6a45c40422"
+      ],
+      "search": [
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd",
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "latest": [
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd"
+      ],
+      "news": [
+        "62a7131c-e7d9-49cb-8df5-8a11ef6702dd"
+      ],
+      "perform": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "complex": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "evolution": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "llms": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "from": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede",
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "including": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "architectural": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "shifts": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "impact": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "mixture": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "experts": [
+        "94b7ccc8-e5b1-40d2-a515-d228fbc73ede"
+      ],
+      "http": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "https": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "arxiv": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "org": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "query": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "large": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "language": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "searchtype": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "source": [
+        "6ef8d58c-7554-4a18-bbc1-838f2cd63082"
+      ],
+      "make": [
+        "eec44e52-39b6-4edc-8bd1-d3ac990156ab"
+      ],
+      "bill": [
+        "eec44e52-39b6-4edc-8bd1-d3ac990156ab"
+      ],
+      "pens": [
+        "eec44e52-39b6-4edc-8bd1-d3ac990156ab"
+      ],
+      "arithmetic": [
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88"
+      ],
+      "expression": [
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88"
+      ],
+      "expecting": [
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88"
+      ],
+      "eof": [
+        "c667c9a7-a3d3-46c2-9c37-09f850720c88"
+      ],
+      "sold": [
+        "5884bcd0-1574-413f-af39-57f310a8dca7"
+      ],
+      "laptops": [
+        "5884bcd0-1574-413f-af39-57f310a8dca7"
+      ],
+      "python": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "5e160947-00f3-422f-9d3c-508292b58f41"
+      ],
+      "this": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "folder": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed",
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "tell": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed"
+      ],
+      "which": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed"
+      ],
+      "one": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed"
+      ],
+      "largest": [
+        "2c3d7b6d-55c6-44c8-b1d3-2fa54a41d9ed"
+      ],
+      "find": [
+        "d68f8f45-fa49-4151-b781-60128e8f9a15",
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "type": [
+        "d68f8f45-fa49-4151-b781-60128e8f9a15",
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37"
+      ],
+      "name": [
+        "d68f8f45-fa49-4151-b781-60128e8f9a15",
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37"
+      ],
+      "exec": [
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "c6fd5daf-f45e-4928-b389-391717bd0103"
+      ],
+      "sort": [
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+        "a739586c-d1dc-4c44-920c-7692bb192bc0"
+      ],
+      "head": [
+        "e1d4f128-01f6-4ae3-994a-40dbd3fdbf37",
+        "a739586c-d1dc-4c44-920c-7692bb192bc0"
+      ],
+      "5nr": [
+        "a739586c-d1dc-4c44-920c-7692bb192bc0"
+      ],
+      "cannot": [
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed"
+      ],
+      "access": [
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed"
+      ],
+      "such": [
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed"
+      ],
+      "directory": [
+        "ed6af5c5-d14c-4468-aa85-30f8576ad3ed",
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "dash": [
+        "7d962c62-bc60-4bbe-ac17-d47ae574af50"
+      ],
+      "board": [
+        "7d962c62-bc60-4bbe-ac17-d47ae574af50"
+      ],
+      "forbidden": [
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "shell": [
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "operator": [
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "detected": [
+        "6140c9ce-51aa-45d6-b7bb-d6e2547f7d10",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "bro": [
+        "9d7202f0-3a4b-4f42-9a98-e418a6f1c23b"
+      ],
+      "scan": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "entire": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "home": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "any": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "leaked": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "api": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "keys": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "tokens": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "passwords": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "cross": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "reference": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "then": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "env": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "generate": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "security": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "08575b5e-8280-4c11-82b7-5847215a49b1"
+      ],
+      "risk": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "08575b5e-8280-4c11-82b7-5847215a49b1"
+      ],
+      "report": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "08575b5e-8280-4c11-82b7-5847215a49b1"
+      ],
+      "called": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "security_audit": [
+        "c10540b8-31e4-4d7e-938a-0633d94ed987"
+      ],
+      "request": [
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "code": [
+        "aa7a5192-68a3-4dc9-af09-1f8456094a6a",
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "analyze": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "every": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "instance": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "unsafe": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "calls": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "potential": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "leaks": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "write": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "patch_plan": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "980dbb4c-c78a-4a87-bd16-b5e45f8c7522"
+      ],
+      "txt": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "980dbb4c-c78a-4a87-bd16-b5e45f8c7522"
+      ],
+      "explaining": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "exactly": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "how": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368",
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "fix": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "them": [
+        "7976c59f-f458-4e03-8ca1-a9baef298368"
+      ],
+      "image": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32",
+        "dd893f04-ae32-4eea-8627-5c5cccc21766",
+        "a0800c48-a2f5-4ca5-9f27-11187db30e59"
+      ],
+      "generation": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32",
+        "dd893f04-ae32-4eea-8627-5c5cccc21766"
+      ],
+      "telegram": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "bot": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "openai": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "dall": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "script": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "that": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "implements": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "feature": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "existing": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "credentials": [
+        "83263a3b-a93f-400a-8a83-4a40923f3c32"
+      ],
+      "call": [
+        "7a7c9559-aa74-4f59-bf14-f13b15c2b757"
+      ],
+      "what": [
+        "7844e24d-5b3d-48a4-80b4-e16a6489040d"
+      ],
+      "time": [
+        "7844e24d-5b3d-48a4-80b4-e16a6489040d"
+      ],
+      "date": [
+        "ea368b22-4c97-458c-9506-fe73b727a92c",
+        "2c168479-3fd8-4aec-87e1-0da28c40d375"
+      ],
+      "hello": [
+        "01aef096-f59f-45ea-8290-72b194de38be"
+      ]
+    }
+  },
+  "stats": {
+    "total_nodes": 94,
+    "total_edges": 98,
+    "most_used_node": null,
+    "last_recall": "2026-04-22T16:25:38.224Z"
+  }
+}

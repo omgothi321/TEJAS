@@ -230,7 +230,18 @@ class KnowledgeGraph {
     const nodes = this.db.db.prepare('SELECT count(*) as count FROM graph_nodes').get();
     const edges = this.db.db.prepare('SELECT count(*) as count FROM graph_edges').get();
     const tasks = this.db.db.prepare('SELECT count(*) as count FROM tasks').get();
-    return { nodes: nodes.count, edges: edges.count, tasks: tasks.count };
+    const lastRecall = this.db.db.prepare("SELECT value FROM settings WHERE key = 'last_recall'").get();
+    const lastUpdate = this.db.db.prepare("SELECT updated_at FROM graph_nodes ORDER BY updated_at DESC LIMIT 1").get();
+    
+    return { 
+      nodes: nodes.count, 
+      edges: edges.count, 
+      tasks: tasks.count,
+      total_nodes: nodes.count,
+      total_edges: edges.count,
+      last_recall: lastRecall ? lastRecall.value : null,
+      last_updated: lastUpdate ? new Date(lastUpdate.updated_at * 1000).toISOString() : null
+    };
   }
 
   async search(query) {
@@ -244,14 +255,31 @@ class KnowledgeGraph {
       type:            r.type,
       label:           r.label,
       relevance_score: r.use_count / 10,
-      id:              r.id
+      id:              r.id,
+      use_count:       r.use_count
     }));
   }
 
   async visualize(nodeId = null) {
     const nodes = this.db.db.prepare('SELECT id, type, label, use_count FROM graph_nodes LIMIT 100').all();
     const edges = this.db.db.prepare('SELECT src, dst, type, weight FROM graph_edges LIMIT 200').all();
-    return { nodes, edges };
+    
+    // Return a simple tree-like string for the CLI visualize command
+    let output = 'Knowledge Graph Structure:\n\n';
+    nodes.slice(0, 20).forEach(n => {
+      output += `[${n.type}] ${n.label} (used: ${n.use_count})\n`;
+      const connections = edges.filter(e => e.src === n.id || e.dst === n.id);
+      connections.slice(0, 3).forEach(e => {
+        const otherId = e.src === n.id ? e.dst : e.src;
+        const otherNode = nodes.find(nn => nn.id === otherId);
+        if (otherNode) {
+          output += `  └─ ${e.type} ─> [${otherNode.type}] ${otherNode.label}\n`;
+        }
+      });
+      output += '\n';
+    });
+    
+    return output;
   }
 
   _getLastTaskNode() {

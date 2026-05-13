@@ -14,8 +14,10 @@ module.exports = async function memoryCmd(options) {
     process.exit(1);
   }
 
+  await memory.initialize();
+
   // ── LIST ──────────────────────────────────────────────────────────────────
-  if (options.list) {
+  if (options.show || options.list) {
     const mem = await memory.read();
     display.section('Memory Contents');
 
@@ -59,7 +61,7 @@ module.exports = async function memoryCmd(options) {
       display.warn('No results found.');
     } else {
       results.forEach(r => {
-        console.log(chalk.cyan(`  [${r.type}] `) + chalk.white(r.name || r.task || '—'));
+        console.log(chalk.cyan(`  [${r.type}] `) + chalk.white(r.label || r.task || '—'));
         if (r.description) display.dim(r.description);
       });
     }

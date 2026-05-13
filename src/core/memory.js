@@ -135,8 +135,13 @@ class MemoryManager {
   }
 
   async _hasDataInDb() {
-    const row = this.db.db.prepare("SELECT count(*) as count FROM settings WHERE key = 'memory'").get();
-    return row && row.count > 0;
+    if (!this.db || !this.db.db) return false;
+    try {
+      const row = this.db.db.prepare("SELECT count(*) as count FROM settings WHERE key = 'memory'").get();
+      return row && row.count > 0;
+    } catch (err) {
+      return false;
+    }
   }
 
   async _initDefaultData(projectMeta) {
@@ -176,7 +181,13 @@ class MemoryManager {
 
   // ── CHECK EXISTS ──────────────────────────────────────────────────────────
   async exists() {
-    return this._hasDataInDb();
+    if (!await fs.pathExists(this.dbPath)) return false;
+    try {
+      if (!this.db.db) await this.db.initialize();
+      return await this._hasDataInDb();
+    } catch (err) {
+      return false;
+    }
   }
 
   // ── READ MEMORY ───────────────────────────────────────────────────────────
@@ -225,23 +236,6 @@ class MemoryManager {
     
     this._config = updated;
     return updated;
-  }
-
-  // ── CLEAR MEMORY ──────────────────────────────────────────────────────────
-  async clear() {
-    const config = await this.readConfig();
-    
-    // Clear SQLite tables
-    this.db.db.prepare('DELETE FROM tasks').run();
-    this.db.db.prepare('DELETE FROM graph_nodes').run();
-    this.db.db.prepare('DELETE FROM graph_edges').run();
-    this.db.db.prepare('DELETE FROM cache').run();
-    this.db.db.prepare("DELETE FROM settings WHERE key = 'memory'").run();
-    
-    await fs.remove(this.logsDir);
-    this._memory = null;
-    await this.initialize({ name: this._memory?.project?.name });
-    await this.writeConfig(config);
   }
 
   // ── ADD WORKFLOW ──────────────────────────────────────────────────────────
@@ -338,8 +332,10 @@ class MemoryManager {
     // 1. FTS5 search on tasks
     try {
       const ftsTasks = this.db.db.prepare(`
-        SELECT id, task, agent, success FROM tasks 
-        WHERE task MATCH ? LIMIT 10
+        SELECT t.id, t.task, t.agent, t.success 
+        FROM tasks t
+        JOIN tasks_fts f ON t.rowid = f.rowid
+        WHERE f.task MATCH ? LIMIT 10
       `).all(query);
       ftsTasks.forEach(r => results.push({ type: 'task', ...r }));
     } catch (err) {}
@@ -347,8 +343,10 @@ class MemoryManager {
     // 2. FTS5 search on graph nodes
     try {
       const ftsNodes = this.db.db.prepare(`
-        SELECT id, type, label FROM graph_nodes 
-        WHERE label MATCH ? LIMIT 10
+        SELECT n.id, n.type, n.label 
+        FROM graph_nodes n
+        JOIN nodes_fts f ON n.rowid = f.rowid
+        WHERE f.label MATCH ? LIMIT 10
       `).all(query);
       ftsNodes.forEach(r => results.push({ type: r.type, ...r }));
     } catch (err) {}

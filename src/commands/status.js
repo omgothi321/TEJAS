@@ -14,6 +14,7 @@ module.exports = async function status(options) {
     return;
   }
 
+  await memory.initialize();
   const mem    = await memory.read();
   const config = await memory.readConfig();
 

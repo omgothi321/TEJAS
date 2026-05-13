@@ -136,6 +136,62 @@ async function runTests() {
     await fs.remove(tmpDir);
   });
 
+  await test('FTS5: search returns results', async () => {
+    const MemoryManager = require('../src/core/memory');
+    const os = require('os'), path = require('path'), fs = require('fs-extra');
+    const tmpDir = path.join(os.tmpdir(), 'tejas_fts_' + Date.now());
+    const mem = new MemoryManager(tmpDir);
+    await mem.initialize();
+
+    // 1. Log a task
+    await mem.logTask({ task: 'deploy production server', agent: 'web', success: true });
+    
+    // 2. Search for it
+    const results = await mem.search('production');
+    if (results.length === 0) throw new Error('FTS5 search failed to find task');
+    if (!results.some(r => r.task === 'deploy production server')) throw new Error('Task not found in results');
+
+    await fs.remove(tmpDir);
+  });
+
+  await test('Memory: clear() resets SQLite', async () => {
+    const MemoryManager = require('../src/core/memory');
+    const os = require('os'), path = require('path'), fs = require('fs-extra');
+    const tmpDir = path.join(os.tmpdir(), 'tejas_clear_' + Date.now());
+    const mem = new MemoryManager(tmpDir);
+    await mem.initialize();
+
+    await mem.logTask({ task: 'test clear', agent: 'test', success: true });
+    await mem.clear();
+
+    const data = await mem.read();
+    if (data.stats.tasks_run !== 0) throw new Error('Stats not reset after clear');
+    
+    const tasks = mem.db.db.prepare('SELECT count(*) as count FROM tasks').get();
+    if (tasks.count !== 0) throw new Error('Tasks table not cleared');
+
+    await fs.remove(tmpDir);
+  });
+
+  await test('Graph: stats and patterns', async () => {
+    const MemoryManager = require('../src/core/memory');
+    const os = require('os'), path = require('path'), fs = require('fs-extra');
+    const tmpDir = path.join(os.tmpdir(), 'tejas_graph_' + Date.now());
+    const mem = new MemoryManager(tmpDir);
+    await mem.initialize();
+
+    await mem.logTask({ task: 'git commit', agent: 'code', success: true, duration_ms: 100 });
+    
+    const stats = await mem.getGraphStats();
+    if (stats.nodes === 0) throw new Error('Graph nodes not created');
+    
+    const patterns = await mem.findPatterns();
+    if (patterns.length === 0) throw new Error('Patterns not detected');
+    if (patterns[0].label !== 'code') throw new Error('Incorrect pattern detection');
+
+    await fs.remove(tmpDir);
+  });
+
   // --- Summary ---
   
   console.log(chalk.blue('\n-------------------------------------------'));

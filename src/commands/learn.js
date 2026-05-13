@@ -14,6 +14,8 @@ module.exports = async function learn(pattern, options) {
     process.exit(1);
   }
 
+  await memory.initialize();
+
   // ── SILENT MODE — non-interactive for scripting/Gemini CLI ──────────────
   // Usage: tejas learn "fact" --silent
   // Saves as preference directly without prompts
